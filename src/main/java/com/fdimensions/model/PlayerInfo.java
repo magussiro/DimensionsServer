@@ -1,6 +1,7 @@
 package com.fdimensions.model;
 
 import com.fdimensions.math.Vector2;
+import com.smartfoxserver.v2.entities.User;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,8 +15,15 @@ public class PlayerInfo {
     private int currentSystemId;
     private Vector2 pos;
     private Vector2 quadrant;
+    private User user;
 
-    public int getCurrentSystemId() {
+    public PlayerInfo(int currentSystemId, Vector2 pos, User user) {
+        this.currentSystemId = currentSystemId;
+        this.pos = pos;
+        this.user = user;
+    }
+
+    public int getCurrentSystemId(int currentSystemId) {
         return currentSystemId;
     }
 
@@ -37,5 +45,13 @@ public class PlayerInfo {
 
     public void setQuadrant(Vector2 quadrant) {
         this.quadrant = quadrant;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

@@ -6,13 +6,32 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="18c9de74-9415-4817-a96c-7cf427eeb8ac" name="Default" comment="" />
+    <list default="true" id="18c9de74-9415-4817-a96c-7cf427eeb8ac" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/fdimensions/model/AsteroidBelt.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/fdimensions/game/handlers/CollisionHandler.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/fdimensions/game/bsn/GameBsn.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/fdimensions/game/handlers/GameSetupHandler.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/fdimensions/game/handlers/ShipHandler.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/fdimensions/model/SpaceGame.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/fdimensions/model/SpaceGameMap.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/fdimensions/game/bsn/StaticSpaceLevelGenerator.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/fdimensions/model/StationaryBody.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/fdimensions/game/bsn/SyncGameStart.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/fdimensions/game/handlers/UserDisconnectedEventHandler.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/fdimensions/game/handlers/UserJoinedEventHandler.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/fdimensions/game/handlers/UserLeavedEventHandler.java" />
+      <change type="MOVED" beforePath="C:\Users\rkevan\My Workspace\DimensionsServer\src\main\java\com\fdimensions\game\SpacePositionHandler.java" afterPath="$PROJECT_DIR$/src/main/java/com/fdimensions/game/handlers/SpacePositionHandler.java" />
+      <change type="MOVED" beforePath="C:\Users\rkevan\My Workspace\DimensionsServer\src\main\java\com\fdimensions\game\SpacePositionHandlerExtension.java" afterPath="$PROJECT_DIR$/src/main/java/com/fdimensions/DimensionServerExtension.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/fdimensions/model/PlayerInfo.java" afterPath="$PROJECT_DIR$/src/main/java/com/fdimensions/model/PlayerInfo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="DimensionsServer.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/PositionHandler.java" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383199825969" ignored="false" />
     <file path="/PlayerUser.java" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383199755361" ignored="false" />
-    <file path="/fragment.java" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383449781323" ignored="false" />
-    <file path="/PlayerInfo.java" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383199754671" ignored="false" />
+    <file path="/fragment.java" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383627035994" ignored="false" />
+    <file path="/PlayerInfo.java" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383630551275" ignored="false" />
     <file path="/SpacePositionHandlerExtension.java" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383199487769" ignored="false" />
     <file path="/SpacePositionHandler.java" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383373618423" ignored="false" />
     <file path="$PROJECT_DIR$/../FlugnutTheFlugerian/FlugnutDimensions/src/com/pkp/flugnut/FlugnutDimensions/GLGame.java" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383202836026" ignored="false" />
@@ -37,10 +56,34 @@
     <file path="$PROJECT_DIR$/../FlugnutTheFlugerian/FlugnutDimensions/src/com/pkp/flugnut/FlugnutDimensions/utils/DialogHandler.java" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383374636872" ignored="false" />
     <file path="/DialogHandler.java" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383374629824" ignored="false" />
     <file path="$PROJECT_DIR$/../FlugnutTheFlugerian/FlugnutDimensions/src/com/pkp/flugnut/FlugnutDimensions/client/SmartFoxBase.java" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383454655663" ignored="false" />
-    <file path="/a.dummy" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383375358586" ignored="false" />
+    <file path="/a.dummy" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383629698599" ignored="false" />
     <file path="/SmartFoxBase.java" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383454642103" ignored="false" />
-    <file path="/Dummy.txt" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383533973270" ignored="false" />
-    <file path="$PROJECT_DIR$/.idea/workspace.xml" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383456632936" ignored="false" />
+    <file path="/Dummy.txt" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383622039990" ignored="false" />
+    <file path="/SeniorAssignmentMeetingBean.java" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383583470614" ignored="false" />
+    <file path="$PROJECT_DIR$/../NAPI/web/src/main/java/org/lds/ics/napi/view/bean/SeniorAssignmentMeetingBean.java" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383583543404" ignored="false" />
+    <file path="$PROJECT_DIR$/../missionary-service/web/src/main/java/org/lds/mps/missionary/watchlist/service/WatchListService.java" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383587088787" ignored="false" />
+    <file path="$PROJECT_DIR$/../missionary-service/web/src/main/webapp/WEB-INF/cxf-servlet.xml" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383587172041" ignored="false" />
+    <file path="$PROJECT_DIR$/../missionary-service/alm/pom.xml" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383587172041" ignored="false" />
+    <file path="$PROJECT_DIR$/../missionary-service/web/src/main/java/org/lds/mps/missionary/util/MissionaryExceptionMapper.java" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383587172041" ignored="false" />
+    <file path="$PROJECT_DIR$/../missionary-service/web/src/main/resources/META-INF/spring/applicationContext.xml" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383587172041" ignored="false" />
+    <file path="$PROJECT_DIR$/../missionary-service/web/src/main/java/org/lds/mps/missionary/dao/MissionaryDao.java" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383587172041" ignored="false" />
+    <file path="$PROJECT_DIR$/../missionary-service/web/src/main/webapp/WEB-INF/web.xml" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383587172041" ignored="false" />
+    <file path="$PROJECT_DIR$/../missionary-service/web/missionary-service-web.iml" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383587522297" ignored="false" />
+    <file path="$PROJECT_DIR$/../NAPI/web/src/main/java/org/lds/ics/napi/model/SeniorAssignmentCurriculum.java" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383588801492" ignored="false" />
+    <file path="/SeniorAssignmentCurriculum.java" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383588798474" ignored="false" />
+    <file path="/DimensionServerExtension.java" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383629655927" ignored="false" />
+    <file path="/GameMap.java" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383624648745" ignored="false" />
+    <file path="/StationaryBody.java" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383626113845" ignored="false" />
+    <file path="/AsteroidBelt.java" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383624404994" ignored="false" />
+    <file path="/StaticLevelGenerator.java" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383626821833" ignored="false" />
+    <file path="/StaticSpaceLevelGenerator.java" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383626527533" ignored="false" />
+    <file path="/UserLeavedEventHandler.java" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383627923885" ignored="false" />
+    <file path="/UserDisconnectedEventHandler.java" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383628714678" ignored="false" />
+    <file path="/UserJoinedEventHandler.java" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383630578361" ignored="false" />
+    <file path="/GameBean.java" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383629318321" ignored="false" />
+    <file path="/SyncGameStart.java" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383629364389" ignored="false" />
+    <file path="/GameBsn.java" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383630820066" ignored="false" />
+    <file path="/SpaceGame.java" changelist="18c9de74-9415-4817-a96c-7cf427eeb8ac" time="1383630607329" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,23 +134,7 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint url="file://$PROJECT_DIR$/src/main/java/com/fdimensions/game/SpacePositionHandlerExtension.java" line="21" class="com.fdimensions.game.SpacePositionHandlerExtension" package="com.fdimensions.game">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-    </line_breakpoints>
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
@@ -118,19 +145,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SpacePositionHandlerExtension.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/fdimensions/game/SpacePositionHandlerExtension.java">
+      <file leaf-file-name="PlayerInfo.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/fdimensions/model/PlayerInfo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="8" selection-start="498" selection-end="561" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SpacePositionHandler.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/fdimensions/game/SpacePositionHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="92" selection-start="1654" selection-end="1654" vertical-scroll-proportion="0.67511016">
+            <state line="30" column="31" selection-start="768" selection-end="768" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -138,10 +156,53 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlayerInfo.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/fdimensions/model/PlayerInfo.java">
+      <file leaf-file-name="DimensionServerExtension.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/fdimensions/DimensionServerExtension.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="33" selection-start="806" selection-end="806" vertical-scroll-proportion="0.0">
+            <state line="48" column="69" selection-start="1640" selection-end="1640" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameBsn.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/fdimensions/game/bsn/GameBsn.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="89" column="63" selection-start="2417" selection-end="2417" vertical-scroll-proportion="0.92565054">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SpaceGame.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/fdimensions/model/SpaceGame.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="19" column="13" selection-start="445" selection-end="445" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserJoinedEventHandler.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/fdimensions/game/handlers/UserJoinedEventHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="59" column="58" selection-start="2607" selection-end="2607" vertical-scroll-proportion="-3.5">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1871#1885#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameSetupHandler.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/fdimensions/game/handlers/GameSetupHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="22" column="57" selection-start="845" selection-end="845" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -166,15 +227,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/fdimensions/game/PositionHandlerExtension.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fdimensions/game/PositionHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fdimensions/model/PlayerUser.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fdimensions/math/NumberUtils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fdimensions/math/Vector2.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fdimensions/math/MathUtils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fdimensions/game/SpacePositionHandlerExtension.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fdimensions/model/StationaryBody.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fdimensions/model/AsteroidBelt.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fdimensions/game/bsn/StaticSpaceLevelGenerator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fdimensions/game/handlers/GameSetupHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fdimensions/game/handlers/ShipHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fdimensions/game/handlers/CollisionHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fdimensions/model/GameBean.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fdimensions/model/SpaceGameBean.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fdimensions/DimensionServerExtension.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fdimensions/game/handlers/UserDisconnectedEventHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fdimensions/game/bsn/SyncGameStart.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fdimensions/model/PlayerInfo.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fdimensions/game/SpacePositionHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fdimensions/model/SpaceGame.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fdimensions/game/handlers/UserJoinedEventHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fdimensions/game/handlers/UserLeavedEventHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fdimensions/game/bsn/GameBsn.java" />
       </list>
     </option>
   </component>
@@ -211,7 +279,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -294,6 +361,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -468,6 +536,74 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DimensionsServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DimensionsServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fdimensions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="handlers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DimensionsServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DimensionsServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fdimensions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bsn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -496,7 +632,17 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.fdimensions.game.handlers" />
       <recent name="com.fdimensions.math" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\rkevan\My Workspace\DimensionsServer\src\main\java\com\fdimensions\game\bsn" />
+      <recent name="C:\Users\rkevan\My Workspace\DimensionsServer\src\main\java\com\fdimensions\model" />
+      <recent name="C:\Users\rkevan\My Workspace\DimensionsServer\src\main\java\com\fdimensions\game\handlers" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.fdimensions.game.handlers" />
+      <recent name="com.fdimensions" />
     </key>
   </component>
   <component name="RunManager" selected="Remote.Remote Debug SmartFox Server">
@@ -672,11 +818,12 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3993576" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3993576" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3974359" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -686,12 +833,11 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2860192" sideWeight="0.6702356" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27748132" sideWeight="0.6025641" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32976446" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -762,90 +908,121 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/SmartFoxServer_2X/SFS2X/lib/sfs2x.jar!/com/smartfoxserver/v2/entities/SFSUser.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fdimensions/game/handlers/SpacePositionHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="13" selection-start="173" selection-end="173" vertical-scroll-proportion="0.1146789" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="10" selection-start="440" selection-end="440" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/SmartFoxServer_2X/SFS2X/lib/sfs2x.jar!/com/smartfoxserver/v2/extensions/BaseClientRequestHandler.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="22" selection-start="184" selection-end="184" vertical-scroll-proportion="0.1146789" />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/SmartFoxServer_2X/SFS2X/lib/sfs2x.jar!/com/smartfoxserver/v2/entities/data/SFSObject.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="124" column="16" selection-start="5950" selection-end="5950" vertical-scroll-proportion="0.59887004" />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/SmartFoxServer_2X/SFS2X/lib/sfs2x.jar!/com/smartfoxserver/v2/entities/data/ISFSObject.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="89" column="9" selection-start="2534" selection-end="2534" vertical-scroll-proportion="0.3423729" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fdimensions/math/NumberUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="13" selection-start="802" selection-end="802" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fdimensions/math/MathUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="13" selection-start="979" selection-end="979" vertical-scroll-proportion="0.21978022" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fdimensions/math/Vector2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="240" column="55" selection-start="6688" selection-end="6688" vertical-scroll-proportion="0.31758243">
+        <state line="15" column="54" selection-start="528" selection-end="528" vertical-scroll-proportion="0.03717472">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/SmartFoxServer_2X/SFS2X/lib/sfs2x.jar!/com/smartfoxserver/v2/extensions/BaseSFSExtension.class">
+    <entry file="file://$USER_HOME$/Downloads/SFS2X_Flash_Examples/Flash/BattleFarm/source/server/src/sfs2x/extensions/games/battlefarm/main/UserJoinedEventHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="16" selection-start="3793" selection-end="3793" vertical-scroll-proportion="0.34837544" />
+        <state line="44" column="29" selection-start="1468" selection-end="1476" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/SmartFoxServer_2X/SFS2X/lib/sfs2x.jar!/com/smartfoxserver/v2/extensions/ISFSExtension.class">
+    <entry file="file://$USER_HOME$/Downloads/SFS2X_Flash_Examples/Flash/BattleFarm/source/server/src/sfs2x/extensions/games/battlefarm/main/ReadyHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="9" selection-start="2398" selection-end="2398" vertical-scroll-proportion="0.7924188" />
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-1.1152416">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Downloads/SFS2X_Android_Examples/SimpleChat/source/SFS_Example_Simple_Chat/src/sfs2x/example/android/simplechat/ChatMessage.java">
+    <entry file="file://$USER_HOME$/Downloads/SFS2X_Flash_Examples/Flash/BattleFarm/source/server/src/sfs2x/extensions/games/battlefarm/main/MapListHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.003717472">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Downloads/SFS2X_Android_Examples/SimpleChat/source/SFS_Example_Simple_Chat/src/sfs2x/example/android/simplechat/MessagesAdapter.java">
+    <entry file="file://$USER_HOME$/Downloads/SFS2X_Flash_Examples/Flash/BattleFarm/source/server/src/sfs2x/extensions/games/battlefarm/main/GameController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-1.5946844" />
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Downloads/SFS2X_Android_Examples/SimpleChat/source/SFS_Example_Simple_Chat/src/sfs2x/example/android/simplechat/SimpleChatActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fdimensions/game/handlers/GameSetupHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="141" column="16" selection-start="5203" selection-end="5502" vertical-scroll-proportion="0.53156143" />
+        <state line="22" column="57" selection-start="845" selection-end="845" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/SFS2X_Flash_Examples/Flash/BattleFarm/source/server/src/sfs2x/extensions/games/battlefarm/beans/GameBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="85" column="47" selection-start="2056" selection-end="2056" vertical-scroll-proportion="0.92263055">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/SFS2X_Flash_Examples/Flash/BattleFarm/source/server/src/sfs2x/extensions/games/battlefarm/main/BattleFarmExtension.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="0" selection-start="762" selection-end="919" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fdimensions/game/handlers/UserDisconnectedEventHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="26" selection-start="294" selection-end="294" vertical-scroll-proportion="0.27079305">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fdimensions/game/bsn/SyncGameStart.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/fdimensions/model/PlayerInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="33" selection-start="806" selection-end="806" vertical-scroll-proportion="0.0">
+        <state line="30" column="31" selection-start="768" selection-end="768" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fdimensions/model/SpaceGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="13" selection-start="445" selection-end="445" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fdimensions/game/handlers/UserJoinedEventHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="59" column="58" selection-start="2607" selection-end="2607" vertical-scroll-proportion="-3.5">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1871#1885#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fdimensions/game/handlers/UserLeavedEventHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="32" selection-start="121" selection-end="121" vertical-scroll-proportion="0.111524165">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fdimensions/game/SpacePositionHandlerExtension.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fdimensions/DimensionServerExtension.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="8" selection-start="498" selection-end="561" vertical-scroll-proportion="0.0">
+        <state line="48" column="69" selection-start="1640" selection-end="1640" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fdimensions/game/SpacePositionHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fdimensions/game/bsn/GameBsn.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="92" selection-start="1654" selection-end="1654" vertical-scroll-proportion="0.67511016">
+        <state line="89" column="63" selection-start="2417" selection-end="2417" vertical-scroll-proportion="0.92565054">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

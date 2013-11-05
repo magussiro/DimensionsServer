@@ -1,5 +1,6 @@
-package com.fdimensions.game;
+package com.fdimensions.game.handlers;
 
+import com.fdimensions.DimensionServerExtension;
 import com.fdimensions.math.Vector2;
 import com.fdimensions.model.PlayerInfo;
 import com.smartfoxserver.v2.entities.User;
@@ -14,11 +15,11 @@ import com.smartfoxserver.v2.extensions.BaseClientRequestHandler;
  * Time: 11:31 PM
  * To change this template use File | Settings | File Templates.
  */
-public class SpacePositionHandler extends BaseClientRequestHandler {
+public class GameSetupHandler extends BaseClientRequestHandler {
 
     @Override
     public void handleClientRequest(User player, ISFSObject positionParams) {
-        SpacePositionHandlerExtension sphe =(SpacePositionHandlerExtension)getParentExtension();
+        DimensionServerExtension sphe =(DimensionServerExtension)getParentExtension();
         int actionId = positionParams.getInt("actionId");
         if (actionId == 1)  { //update position
             PlayerInfo pi = sphe.getPlayerInfo(player.getId());
