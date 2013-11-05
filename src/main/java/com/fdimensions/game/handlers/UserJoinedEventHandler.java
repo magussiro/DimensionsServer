@@ -30,7 +30,7 @@ public class UserJoinedEventHandler extends BaseServerEventHandler {
 			trace("BattleFarm: user " + user.getName() + " entered the game room '" + room.getName() + "' - game room id: " + room.getId());
 
 			// Check if game already exist. If not, you have just entered a new room: create new game
-			SpaceGame currGame = ((DimensionServerExtension) getParentExtension()).getGames().get(room.getId());
+			SpaceGame currGame = ((DimensionServerExtension) getParentExtension()).getSystems().get(room.getId());
 
 			if (currGame == null)
 			{
@@ -47,7 +47,7 @@ public class UserJoinedEventHandler extends BaseServerEventHandler {
 				SpaceGameMap gameMapBean = StaticSpaceLevelGenerator.generateRandomLevel();
 
 				currGame = new SpaceGame(gameMapBean,room.getId());
-				((DimensionServerExtension) (getParentExtension())).getGames().put(room.getId(),currGame);
+				((DimensionServerExtension) (getParentExtension())).getSystems().put(room.getId(),currGame);
 				trace("BattleFarm: a new match was generated for room name '" + room.getName() + "' room id: " + room.getId() + "; selected map is RANDOM");
 
 			} 
