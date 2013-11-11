@@ -16,6 +16,7 @@ public class PlayerInfo {
     private Vector2 pos;
     private Vector2 quadrant;
     private User user;
+    private boolean readyToPlay = false;
 
     public PlayerInfo(int currentSystemId, Vector2 pos, User user) {
         this.currentSystemId = currentSystemId;
@@ -53,5 +54,13 @@ public class PlayerInfo {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public boolean isReadyToPlay() {
+        return readyToPlay;
+    }
+
+    public void setReadyToPlay(boolean readyToPlay) {
+        this.readyToPlay = readyToPlay;
     }
 }

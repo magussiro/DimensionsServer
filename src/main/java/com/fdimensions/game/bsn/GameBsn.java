@@ -44,10 +44,6 @@ public class GameBsn
 					extension.send("stop", resObj, pi.getUser());
 
 				}
-				else
-				{
-					GameBsn.quitGame(currGame,extension);
-				}
 			}
 		}
 

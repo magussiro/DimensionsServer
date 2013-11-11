@@ -14,21 +14,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-/**
- * Created with IntelliJ IDEA.
- * User: rkevan
- * Date: 10/30/13
- * Time: 11:29 PM
- * To change this template use File | Settings | File Templates.
- */
 public class DimensionServerExtension extends SFSExtension {
     private Map<Integer, PlayerInfo> playerInfos;
-    private ConcurrentHashMap<Integer,SpaceGame> systems = null;
+    private ConcurrentHashMap<Integer,SpaceGame> systems;
 
     @Override
     public void init() {
-        playerInfos = new HashMap<Integer, PlayerInfo>();
-        systems = new ConcurrentHashMap<Integer, SpaceGame>();
+        playerInfos = new HashMap<>();
+        systems = new ConcurrentHashMap<>();
 
         this.addRequestHandler("gameSetup", GameSetupHandler.class);
         this.addRequestHandler("ships", ShipHandler.class);
@@ -47,9 +40,6 @@ public class DimensionServerExtension extends SFSExtension {
         return playerInfos.get(playerId);
     }
 
-    /**
-     * Destroy
-     */
     public void destroy()
     {
 //        gameController.setTimeEventsRunning(false);

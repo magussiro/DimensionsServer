@@ -1,7 +1,7 @@
 package com.fdimensions.game.bsn;
 
 import com.fdimensions.math.Vector2;
-import com.fdimensions.model.AsteroidBelt;
+import com.fdimensions.model.AsteroidArea;
 import com.fdimensions.model.SpaceGameMap;
 import com.fdimensions.model.StationaryBody;
 
@@ -39,17 +39,17 @@ public class StaticSpaceLevelGenerator {
         int beltCount = r.nextInt((int)minRadii)+1;
         int starCount = r.nextInt(MAX_STARS) + 1;
         int planetCount = r.nextInt((int)(PLANETS_PER_MIN_SYS_RAD * minRadii))+1;
-        List<AsteroidBelt> asteroidBelts = new ArrayList<AsteroidBelt>();
+        List<AsteroidArea> asteroidAreas = new ArrayList<AsteroidArea>();
         for (int i = 0; i < beltCount; i++) {
-            int innerRingRadius = (i+1)*MIN_SYSTEM_RADIUS;
-            int outerRingRadius = innerRingRadius + r.nextInt(MAX_ASTEROID_WIDTH-MIN_ASTEROID_WIDTH)+MIN_ASTEROID_WIDTH;
+            int innerRingRadius = 300;//(i+1)*MIN_SYSTEM_RADIUS;
+            int outerRingRadius = 300;//innerRingRadius + r.nextInt(MAX_ASTEROID_WIDTH-MIN_ASTEROID_WIDTH)+MIN_ASTEROID_WIDTH;
 
             //TODO ****asteroid per minRadii calculation*****
             int asteroidCount = 100*(i+1);
             //***********************************************
 
-            AsteroidBelt ab = new AsteroidBelt(new Vector2(innerRingRadius,outerRingRadius), asteroidCount);
-            asteroidBelts.add(ab);
+            AsteroidArea ab = new AsteroidArea(new Vector2(innerRingRadius, -outerRingRadius), new Vector2(outerRingRadius, outerRingRadius), asteroidCount);
+            asteroidAreas.add(ab);
         }
         List<StationaryBody> stars = new ArrayList<StationaryBody>();
         //TODO figure out distance from system center and distance from each other algorithm, for now only one star in the middle
@@ -57,6 +57,6 @@ public class StaticSpaceLevelGenerator {
 
         List<StationaryBody> planets = new ArrayList<StationaryBody>();
 
-        return new SpaceGameMap(stars, asteroidBelts, systemRadius);
+        return new SpaceGameMap(stars, asteroidAreas, systemRadius);
     }
 }

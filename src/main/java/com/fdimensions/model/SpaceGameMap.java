@@ -1,6 +1,8 @@
 package com.fdimensions.model;
 
-import com.fdimensions.math.Vector2;
+import com.smartfoxserver.v2.entities.data.ISFSObject;
+import com.smartfoxserver.v2.entities.data.SFSArray;
+import com.smartfoxserver.v2.entities.data.SFSObject;
 
 import java.util.List;
 
@@ -11,24 +13,26 @@ import java.util.List;
  * Time: 8:53 PM
  * To change this template use File | Settings | File Templates.
  */
-public class SpaceGameMap {
+public class SpaceGameMap implements DimSFSObject{
 
     private List<StationaryBody> stationaryBodies;
-    private List<AsteroidBelt> asteroidBelts;
+    private List<AsteroidArea> asteroidAreas;
     private int systemRadius;
+    /** SFSObject representation ready to be used in responses to clients */
+    private ISFSObject mapObject = null;
 
-    public SpaceGameMap(List<StationaryBody> stationaryBodies, List<AsteroidBelt> asteroidBelts, int systemRadius) {
+    public SpaceGameMap(List<StationaryBody> stationaryBodies, List<AsteroidArea> asteroidAreas, int systemRadius) {
         this.stationaryBodies = stationaryBodies;
-        this.asteroidBelts = asteroidBelts;
+        this.asteroidAreas = asteroidAreas;
         this.systemRadius = systemRadius;
     }
 
-    public List<AsteroidBelt> getAsteroidBelts() {
-        return asteroidBelts;
+    public List<AsteroidArea> getAsteroidAreas() {
+        return asteroidAreas;
     }
 
-    public void setAsteroidBelts(List<AsteroidBelt> asteroidBelts) {
-        this.asteroidBelts = asteroidBelts;
+    public void setAsteroidAreas(List<AsteroidArea> asteroidAreas) {
+        this.asteroidAreas = asteroidAreas;
     }
 
     public List<StationaryBody> getStationaryBodies() {
@@ -45,6 +49,30 @@ public class SpaceGameMap {
 
     public void setSystemRadius(int systemRadius) {
         this.systemRadius = systemRadius;
+    }
+
+    public ISFSObject getDimSFSObject() {
+        if (null == mapObject) {
+            initMapObject();
+        }
+        return mapObject;
+    }
+
+    private void initMapObject() {
+        mapObject = new SFSObject();
+        SFSArray sbds = new SFSArray();
+        for(DimSFSObject bd: stationaryBodies) {
+            sbds.addSFSObject(bd.getDimSFSObject());
+        }
+        mapObject.putSFSArray("sbds", sbds);
+
+        SFSArray abs = new SFSArray();
+        for(DimSFSObject ab : asteroidAreas) {
+            abs.addSFSObject(ab.getDimSFSObject());
+        }
+        mapObject.putSFSArray("abs", abs);
+
+        mapObject.putInt("rad", systemRadius);
     }
 
 }

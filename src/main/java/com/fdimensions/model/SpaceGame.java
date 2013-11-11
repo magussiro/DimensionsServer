@@ -1,14 +1,12 @@
 package com.fdimensions.model;
 
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.List;
-import java.util.Timer;
-import java.util.concurrent.ConcurrentHashMap;
-
 import com.fdimensions.DimensionServerExtension;
 import com.fdimensions.game.bsn.SyncGameStart;
 import com.smartfoxserver.v2.entities.User;
+
+import java.util.List;
+import java.util.Timer;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 /**
@@ -131,11 +129,11 @@ public class SpaceGame
 	 */
 	public void startGame(List<User> recipients, DimensionServerExtension ext)
 	{
-		gameStartTime = System.currentTimeMillis() + 3500;
-		started = true;
-
-		// Wait a number of seconds and then notify clients that the game starts!
-		timer = new Timer();
-		timer.schedule(new SyncGameStart(ext, recipients), 3000);
+//		gameStartTime = System.currentTimeMillis() + 3500;
+//		started = true;
+//
+//		// Wait a number of seconds and then notify clients that the game starts!
+//		timer = new Timer();
+//		timer.schedule(new SyncGameStart(ext, recipients), 3000);
 	}
 }
