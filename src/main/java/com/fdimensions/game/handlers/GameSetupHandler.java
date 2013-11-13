@@ -1,12 +1,15 @@
 package com.fdimensions.game.handlers;
 
 import com.fdimensions.DimensionServerExtension;
+import com.fdimensions.math.Vector2;
 import com.fdimensions.model.PlayerInfo;
 import com.fdimensions.model.SpaceGame;
 import com.fdimensions.model.SpaceGameMap;
 import com.smartfoxserver.v2.entities.Room;
 import com.smartfoxserver.v2.entities.User;
 import com.smartfoxserver.v2.entities.data.ISFSObject;
+import com.smartfoxserver.v2.entities.data.SFSObject;
+import com.smartfoxserver.v2.exceptions.SFSJoinRoomException;
 import com.smartfoxserver.v2.extensions.BaseClientRequestHandler;
 
 import java.util.List;
@@ -23,38 +26,54 @@ public class GameSetupHandler extends BaseClientRequestHandler {
     @Override
     public void handleClientRequest(User player, ISFSObject positionParams) {
         DimensionServerExtension sphe =(DimensionServerExtension)getParentExtension();
-        // Retrieve user's room
-        Room room = null;
+
+        int systemId = 1;   //(roomid) will eventually load from the db
+        int shipType = 1;   //will eventually load from the db
+        Vector2 startPosition = new Vector2(600, 100); //will eventually load from db
+        SpaceGame currSystem = sphe.getSystems().get(systemId);
+        if (currSystem == null) {
+            return;
+        }
+        // Leave any room the player is currently in
         List<Room> rooms = player.getJoinedRooms();
+        for(Room r: rooms) {
+            getApi().leaveRoom(player, r);
+        }
 
-        if (rooms.size() > 0) room = rooms.get(0);  // User can be only in 1 room at a time
+        //join room for current system
+        if (!joinRoom(player, currSystem.getRoom())) return;
 
-        // Get game bean
-        SpaceGame gameBean = sphe.getSystems().get(room.getId());
 
-        if (gameBean != null && player != null)
+        //set player info to send
+        PlayerInfo p = new PlayerInfo(player.getId(), player);
+        p.setCurrentSystemId(currSystem.getRoom().getId());
+        currSystem.getPlayers().put(player.getId(), p);
+
+        if (currSystem != null && player != null)
         {
-            PlayerInfo p = gameBean.getPlayers().get(player.getId());
-            if (null == p) {
-                //Player Doesn't Exist.
-                return;
-            }
-            p.setReadyToPlay(true);
+            SpaceGameMap spm = currSystem.getSpaceGameMap();
+            spm.setId(currSystem.getRoom().getId());
+            spm.setShipPos(startPosition);
+            spm.setShipType(shipType);
 
-            // Retrieve map data and send to players
-            SpaceGameMap spm = gameBean.getSpaceGameMap();
-
-            // Retrieve pre-generated SFSObject
             ISFSObject resObj = spm.getDimSFSObject();
-
-            // Add information relative to master and slave
-            //resObj.putSFSObject("map",resObj);
-
-            // Send map data to player
             send("map_data", resObj, player);
 
-            // Set the start time of the game ahead of 3 1/2 seconds to compensate the delay
-            gameBean.startGame(room.getUserList(),(DimensionServerExtension)getParentExtension());
+            currSystem.startGame(currSystem.getRoom().getUserList(),(DimensionServerExtension)getParentExtension());
         }
+    }
+
+    private boolean joinRoom(User player, Room room) {
+        try {
+            getApi().joinRoom(player, room);
+        }
+        catch (SFSJoinRoomException e) {
+            e.printStackTrace();
+            ISFSObject retObj = new SFSObject();
+            retObj.putUtfString("msg", "Failed to Join Room: " + room.getName());
+            send("error_msg", retObj, player);
+            return false;
+        }
+        return true;
     }
 }

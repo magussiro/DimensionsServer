@@ -1,7 +1,7 @@
 package com.fdimensions.model;
 
 import com.fdimensions.DimensionServerExtension;
-import com.fdimensions.game.bsn.SyncGameStart;
+import com.smartfoxserver.v2.entities.Room;
 import com.smartfoxserver.v2.entities.User;
 
 import java.util.List;
@@ -17,61 +17,40 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class SpaceGame
 {
-	/** Game id, corresponding to system id */
-	private int id = 0;
+    private Room room;
 	private SpaceGameMap spaceGameMap;
-	Integer master = null;
-	Integer slave = null;
 	private ConcurrentHashMap<Integer,PlayerInfo> players = null;
 	private long gameStartTime = 0L;
 	private Timer timer = null;
 	private boolean started = false;
 	private int matchDuration = 0;
 
-	public SpaceGame(SpaceGameMap spaceGameMap, int id)
+	public SpaceGame(SpaceGameMap spaceGameMap, Room room)
 	{
 		this.spaceGameMap = spaceGameMap;
-		this.id = id;
+		this.room = room;
 
 		// Initialize internal data structure
-		players = new ConcurrentHashMap<Integer,PlayerInfo>();
+		players = new ConcurrentHashMap<>();
 
 		// Reset game to its initial status
 		reset(); 
 	}
-	
-	/* GETTERS & SETTERS */
 
-	public int getId() {
-		return id;
-	}
+    public Room getRoom() {
+        return room;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public void setRoom(Room room) {
+        this.room = room;
+    }
 
-	public SpaceGameMap getSpaceGameMap() {
+    public SpaceGameMap getSpaceGameMap() {
 		return spaceGameMap;
 	}
 
 	public void setBaseGameMapBean(SpaceGameMap spaceGameMap) {
 		this.spaceGameMap = spaceGameMap;
-	}
-
-	public Integer getMaster() {
-		return master;
-	}
-
-	public void setMaster(Integer master) {
-		this.master = master;
-	}
-
-	public Integer getSlave() {
-		return slave;
-	}
-
-	public void setSlave(Integer slave) {
-		this.slave = slave;
 	}
 
 	public ConcurrentHashMap<Integer, PlayerInfo> getPlayers() {
@@ -125,7 +104,8 @@ public class SpaceGame
 	}
 
 	/** 
-	 * Start a new game 
+	 * Start a new game
+     *             // Set the start time of the game ahead of 3 1/2 seconds to compensate the delay
 	 */
 	public void startGame(List<User> recipients, DimensionServerExtension ext)
 	{

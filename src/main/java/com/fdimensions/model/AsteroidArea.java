@@ -4,6 +4,8 @@ import com.fdimensions.math.Vector2;
 import com.smartfoxserver.v2.entities.data.ISFSObject;
 import com.smartfoxserver.v2.entities.data.SFSObject;
 
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * User: rkevan
@@ -12,32 +14,40 @@ import com.smartfoxserver.v2.entities.data.SFSObject;
  * To change this template use File | Settings | File Templates.
  */
 public class AsteroidArea implements DimSFSObject{
-
-    private ISFSObject sbObject;
-    private Vector2 xy1;
-    private Vector2 xy2;
+    private Vector2 spawnCenter;
+    private List<Vector2> bounds;
+    private List<Asteroid> asteroids;
     private int asteroidNum;
+    private ISFSObject sbObject;
 
-    public AsteroidArea(Vector2 xy1, Vector2 xy2, int asteroidNum) {
-        this.xy1 = xy1;
-        this.xy2 = xy2;
+    public AsteroidArea(Vector2 spawnCenter, List<Vector2> bounds, int asteroidNum) {
+        this.spawnCenter = spawnCenter;
+        this.bounds = bounds;
         this.asteroidNum = asteroidNum;
     }
 
-    public Vector2 getXy1() {
-        return xy1;
+    public Vector2 getSpawnCenter() {
+        return spawnCenter;
     }
 
-    public void setXy1(Vector2 xy1) {
-        this.xy1 = xy1;
+    public void setSpawnCenter(Vector2 spawnCenter) {
+        this.spawnCenter = spawnCenter;
     }
 
-    public Vector2 getXy2() {
-        return xy2;
+    public List<Vector2> getBounds() {
+        return bounds;
     }
 
-    public void setXy2(Vector2 xy2) {
-        this.xy2 = xy2;
+    public void setBounds(List<Vector2> bounds) {
+        this.bounds = bounds;
+    }
+
+    public List<Asteroid> getAsteroids() {
+        return asteroids;
+    }
+
+    public void setAsteroids(List<Asteroid> asteroids) {
+        this.asteroids = asteroids;
     }
 
     public int getAsteroidNum() {
@@ -48,20 +58,23 @@ public class AsteroidArea implements DimSFSObject{
         this.asteroidNum = asteroidNum;
     }
 
+    private void initAsteroidBeltSFSObject(){
+        sbObject = new SFSObject();
+        sbObject.putFloat("cpx", spawnCenter.x);
+        sbObject.putFloat("cpy", spawnCenter.y);
+        for (int i = 0; i < bounds.size(); i++) {
+            Vector2 boundPoint = bounds.get(i);
+            sbObject.putFloat("bpx"+i, boundPoint.x);
+            sbObject.putFloat("bpy"+i, boundPoint.y);
+        }
+        sbObject.putInt("num", asteroidNum);
+    }
+
+    @Override
     public ISFSObject getDimSFSObject() {
-        if (null == sbObject) {
+        if (sbObject == null) {
             initAsteroidBeltSFSObject();
         }
         return sbObject;
     }
-
-    private void initAsteroidBeltSFSObject(){
-        sbObject = new SFSObject();
-        sbObject.putFloat("x1", xy1.x);
-        sbObject.putFloat("y1", xy1.y);
-        sbObject.putFloat("x2", xy2.x);
-        sbObject.putFloat("y2", xy2.y);
-        sbObject.putInt("num", asteroidNum);
-    }
-
 }

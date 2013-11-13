@@ -61,7 +61,7 @@ public class GameBsn
 		gameBean.setPlayers(null);
 		gameBean.setBaseGameMapBean(null);
 
-		extension.trace("Battlefarm: game " + gameBean.getId() + " destroyed");
+		extension.trace("FlugutDimensions: game " + gameBean.getRoom().getId() + " destroyed");
 
 		gameBean = null;
 	}

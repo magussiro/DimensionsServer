@@ -11,16 +11,26 @@ import com.smartfoxserver.v2.entities.data.SFSObject;
  * Time: 9:00 PM
  * To change this template use File | Settings | File Templates.
  */
-public class StationaryBody implements DimSFSObject {
+public class CelestialBody implements DimSFSObject {
+    private int id;
     private Vector2 location;
     private int bodyType;
     private int radius;
     private ISFSObject sbObject;
 
-    public StationaryBody(Vector2 location, int bodyType, int radius) {
+    public CelestialBody(int id, Vector2 location, int bodyType, int radius) {
+        this.id = id;
         this.location = location;
         this.bodyType = bodyType;
         this.radius = radius;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Vector2 getLocation() {
@@ -56,6 +66,7 @@ public class StationaryBody implements DimSFSObject {
 
     private void initStationaryBodySFSObject(){
         sbObject = new SFSObject();
+        sbObject.putInt("id", id);
         sbObject.putFloat("x", location.x);
         sbObject.putFloat("y", location.y);
         sbObject.putInt("bt", bodyType);

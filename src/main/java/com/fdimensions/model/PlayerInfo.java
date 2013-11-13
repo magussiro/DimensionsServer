@@ -13,14 +13,11 @@ import com.smartfoxserver.v2.entities.User;
 public class PlayerInfo {
 
     private int currentSystemId;
-    private Vector2 pos;
     private Vector2 quadrant;
     private User user;
-    private boolean readyToPlay = false;
 
-    public PlayerInfo(int currentSystemId, Vector2 pos, User user) {
+    public PlayerInfo(int currentSystemId, User user) {
         this.currentSystemId = currentSystemId;
-        this.pos = pos;
         this.user = user;
     }
 
@@ -30,14 +27,6 @@ public class PlayerInfo {
 
     public void setCurrentSystemId(int currentSystemId) {
         this.currentSystemId = currentSystemId;
-    }
-
-    public Vector2 getPos() {
-        return pos;
-    }
-
-    public void setPos(Vector2 pos) {
-        this.pos = pos;
     }
 
     public Vector2 getQuadrant() {
@@ -54,13 +43,5 @@ public class PlayerInfo {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public boolean isReadyToPlay() {
-        return readyToPlay;
-    }
-
-    public void setReadyToPlay(boolean readyToPlay) {
-        this.readyToPlay = readyToPlay;
     }
 }

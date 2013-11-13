@@ -1,5 +1,6 @@
 package com.fdimensions.model;
 
+import com.fdimensions.math.Vector2;
 import com.smartfoxserver.v2.entities.data.ISFSObject;
 import com.smartfoxserver.v2.entities.data.SFSArray;
 import com.smartfoxserver.v2.entities.data.SFSObject;
@@ -11,20 +12,35 @@ import java.util.List;
  * User: rkevan
  * Date: 11/4/13
  * Time: 8:53 PM
- * To change this template use File | Settings | File Templates.
  */
 public class SpaceGameMap implements DimSFSObject{
 
-    private List<StationaryBody> stationaryBodies;
+    private int id;
+    private List<CelestialBody> stationaryBodies;
     private List<AsteroidArea> asteroidAreas;
     private int systemRadius;
+    private Vector2 shipPos;
+    private int shipType;
+    private String systemResources;
+    private int backgroundImage;
     /** SFSObject representation ready to be used in responses to clients */
     private ISFSObject mapObject = null;
 
-    public SpaceGameMap(List<StationaryBody> stationaryBodies, List<AsteroidArea> asteroidAreas, int systemRadius) {
+    public SpaceGameMap(int id, List<CelestialBody> stationaryBodies, List<AsteroidArea> asteroidAreas, int systemRadius, String systemResources, int backgroundImage) {
+        this.id = id;
         this.stationaryBodies = stationaryBodies;
         this.asteroidAreas = asteroidAreas;
         this.systemRadius = systemRadius;
+        this.systemResources = systemResources;
+        this.backgroundImage = backgroundImage;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public List<AsteroidArea> getAsteroidAreas() {
@@ -35,11 +51,11 @@ public class SpaceGameMap implements DimSFSObject{
         this.asteroidAreas = asteroidAreas;
     }
 
-    public List<StationaryBody> getStationaryBodies() {
+    public List<CelestialBody> getStationaryBodies() {
         return stationaryBodies;
     }
 
-    public void setStationaryBodies(List<StationaryBody> stationaryBodies) {
+    public void setStationaryBodies(List<CelestialBody> stationaryBodies) {
         this.stationaryBodies = stationaryBodies;
     }
 
@@ -51,6 +67,38 @@ public class SpaceGameMap implements DimSFSObject{
         this.systemRadius = systemRadius;
     }
 
+    public Vector2 getShipPos() {
+        return shipPos;
+    }
+
+    public void setShipPos(Vector2 shipPos) {
+        this.shipPos = shipPos;
+    }
+
+    public int getShipType() {
+        return shipType;
+    }
+
+    public void setShipType(int shipType) {
+        this.shipType = shipType;
+    }
+
+    public String getSystemResources() {
+        return systemResources;
+    }
+
+    public void setSystemResources(String systemResources) {
+        this.systemResources = systemResources;
+    }
+
+    public int getBackgroundImage() {
+        return backgroundImage;
+    }
+
+    public void setBackgroundImage(int backgroundImage) {
+        this.backgroundImage = backgroundImage;
+    }
+
     public ISFSObject getDimSFSObject() {
         if (null == mapObject) {
             initMapObject();
@@ -60,6 +108,7 @@ public class SpaceGameMap implements DimSFSObject{
 
     private void initMapObject() {
         mapObject = new SFSObject();
+        mapObject.putInt("id", id);
         SFSArray sbds = new SFSArray();
         for(DimSFSObject bd: stationaryBodies) {
             sbds.addSFSObject(bd.getDimSFSObject());
@@ -73,6 +122,11 @@ public class SpaceGameMap implements DimSFSObject{
         mapObject.putSFSArray("abs", abs);
 
         mapObject.putInt("rad", systemRadius);
+        mapObject.putFloat("spx", shipPos.x);
+        mapObject.putFloat("spy", shipPos.y);
+        mapObject.putInt("st", shipType);
+        mapObject.putUtfString("sysrec", systemResources);
+        mapObject.putInt("bgi", backgroundImage);
     }
 
 }

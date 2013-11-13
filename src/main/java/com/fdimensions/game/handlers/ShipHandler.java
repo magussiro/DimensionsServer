@@ -22,25 +22,12 @@ public class ShipHandler extends BaseClientRequestHandler {
         DimensionServerExtension sphe =(DimensionServerExtension)getParentExtension();
         int actionId = positionParams.getInt("actionId");
         if (actionId == 1)  { //update position
-            PlayerInfo pi = sphe.getPlayerInfo(player.getId());
-            float posX = positionParams.getFloat("posX");
-            float posY = positionParams.getFloat("posY");
-            long quadrantX = positionParams.getInt("quadrantX");
-            long quadrantY = positionParams.getInt("quadrantY");
-            pi.setPos(new Vector2(posX, posY));
-            pi.setQuadrant(new Vector2(quadrantX, quadrantY));
+
         }
         else if (actionId == 2) { //get server position
-            PlayerInfo pi = sphe.getPlayerInfo(player.getId());
-            ISFSObject rtn = new SFSObject();
-            rtn.putUtfString("pos", "X:"+pi.getPos().X+" Y:"+pi.getPos().X);
-            rtn.putUtfString("quad", "X:"+pi.getQuadrant().X+" Y:"+pi.getPos().Y);
-            sphe.send("position", rtn, player);
+
         }
         else if (actionId == 3) { //get asteroids number
-            ISFSObject rtn = new SFSObject();
-            rtn.putInt("asteroids", 3);
-            sphe.send("asteroids", rtn, player);
 
         }
     }
