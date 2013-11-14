@@ -19,12 +19,10 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class DimensionServerExtension extends SFSExtension {
-    private Map<Integer, PlayerInfo> playerInfos;
     private ConcurrentHashMap<Integer,SpaceGame> systems;
 
     @Override
     public void init() {
-        playerInfos = new HashMap<>();
         systems = generateSystems();
 
         this.addRequestHandler("gameSetup", GameSetupHandler.class);
@@ -59,13 +57,9 @@ public class DimensionServerExtension extends SFSExtension {
 
         List<CelestialBody> cbs = new ArrayList<CelestialBody>();
         cbs.add(new CelestialBody(1, new Vector2(0,0), 1, 300));
-        cbs.add(new CelestialBody(2, new Vector2(600,100), 2, 50));
+        cbs.add(new CelestialBody(2, new Vector2(1500,100), 2, 50));
 
         return new SpaceGameMap(system.getId(), cbs, asteroidAreas, 10000, "1,2", 1);
-    }
-
-    public PlayerInfo getPlayerInfo(int playerId) {
-        return playerInfos.get(playerId);
     }
 
     public void destroy()

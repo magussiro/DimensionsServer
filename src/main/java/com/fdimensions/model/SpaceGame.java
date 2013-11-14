@@ -20,6 +20,7 @@ public class SpaceGame
     private Room room;
 	private SpaceGameMap spaceGameMap;
 	private ConcurrentHashMap<Integer,PlayerInfo> players = null;
+
 	private long gameStartTime = 0L;
 	private Timer timer = null;
 	private boolean started = false;

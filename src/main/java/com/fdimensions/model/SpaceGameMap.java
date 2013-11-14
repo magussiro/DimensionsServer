@@ -6,6 +6,7 @@ import com.smartfoxserver.v2.entities.data.SFSArray;
 import com.smartfoxserver.v2.entities.data.SFSObject;
 
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,7 +17,8 @@ import java.util.List;
 public class SpaceGameMap implements DimSFSObject{
 
     private int id;
-    private List<CelestialBody> stationaryBodies;
+    private ConcurrentHashMap<Integer, PlayerInfo> playerInfos;
+    private List<CelestialBody> celestialBodies;
     private List<AsteroidArea> asteroidAreas;
     private int systemRadius;
     private Vector2 shipPos;
@@ -26,9 +28,14 @@ public class SpaceGameMap implements DimSFSObject{
     /** SFSObject representation ready to be used in responses to clients */
     private ISFSObject mapObject = null;
 
-    public SpaceGameMap(int id, List<CelestialBody> stationaryBodies, List<AsteroidArea> asteroidAreas, int systemRadius, String systemResources, int backgroundImage) {
+    public SpaceGameMap(int id,
+                        List<CelestialBody> celestialBodies,
+                        List<AsteroidArea> asteroidAreas,
+                        int systemRadius,
+                        String systemResources,
+                        int backgroundImage) {
         this.id = id;
-        this.stationaryBodies = stationaryBodies;
+        this.celestialBodies = celestialBodies;
         this.asteroidAreas = asteroidAreas;
         this.systemRadius = systemRadius;
         this.systemResources = systemResources;
@@ -43,6 +50,14 @@ public class SpaceGameMap implements DimSFSObject{
         this.id = id;
     }
 
+    public ConcurrentHashMap<Integer, PlayerInfo> getPlayerInfos() {
+        return playerInfos;
+    }
+
+    public void setPlayerInfos(ConcurrentHashMap<Integer, PlayerInfo> playerInfos) {
+        this.playerInfos = playerInfos;
+    }
+
     public List<AsteroidArea> getAsteroidAreas() {
         return asteroidAreas;
     }
@@ -51,12 +66,12 @@ public class SpaceGameMap implements DimSFSObject{
         this.asteroidAreas = asteroidAreas;
     }
 
-    public List<CelestialBody> getStationaryBodies() {
-        return stationaryBodies;
+    public List<CelestialBody> getCelestialBodies() {
+        return celestialBodies;
     }
 
-    public void setStationaryBodies(List<CelestialBody> stationaryBodies) {
-        this.stationaryBodies = stationaryBodies;
+    public void setCelestialBodies(List<CelestialBody> celestialBodies) {
+        this.celestialBodies = celestialBodies;
     }
 
     public int getSystemRadius() {
@@ -109,8 +124,14 @@ public class SpaceGameMap implements DimSFSObject{
     private void initMapObject() {
         mapObject = new SFSObject();
         mapObject.putInt("id", id);
+        SFSArray pi = new SFSArray();
+        for(Integer pmi : playerInfos.keySet()){
+            pi.addUtfString(playerInfos.get(pmi).getUser().getName());
+        }
+        mapObject.putSFSArray("pis", pi);
+
         SFSArray sbds = new SFSArray();
-        for(DimSFSObject bd: stationaryBodies) {
+        for(DimSFSObject bd: celestialBodies) {
             sbds.addSFSObject(bd.getDimSFSObject());
         }
         mapObject.putSFSArray("sbds", sbds);

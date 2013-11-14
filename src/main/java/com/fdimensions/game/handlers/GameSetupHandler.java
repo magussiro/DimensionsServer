@@ -3,6 +3,7 @@ package com.fdimensions.game.handlers;
 import com.fdimensions.DimensionServerExtension;
 import com.fdimensions.math.Vector2;
 import com.fdimensions.model.PlayerInfo;
+import com.fdimensions.model.Ship;
 import com.fdimensions.model.SpaceGame;
 import com.fdimensions.model.SpaceGameMap;
 import com.smartfoxserver.v2.entities.Room;
@@ -45,14 +46,14 @@ public class GameSetupHandler extends BaseClientRequestHandler {
 
 
         //set player info to send
-        PlayerInfo p = new PlayerInfo(player.getId(), player);
-        p.setCurrentSystemId(currSystem.getRoom().getId());
+        PlayerInfo p = new PlayerInfo(currSystem, player, new Ship(shipType, startPosition, 0, 0));
         currSystem.getPlayers().put(player.getId(), p);
 
         if (currSystem != null && player != null)
         {
             SpaceGameMap spm = currSystem.getSpaceGameMap();
             spm.setId(currSystem.getRoom().getId());
+            spm.setPlayerInfos(currSystem.getPlayers());
             spm.setShipPos(startPosition);
             spm.setShipType(shipType);
 

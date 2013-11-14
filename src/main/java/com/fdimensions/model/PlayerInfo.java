@@ -12,29 +12,22 @@ import com.smartfoxserver.v2.entities.User;
  */
 public class PlayerInfo {
 
-    private int currentSystemId;
-    private Vector2 quadrant;
+    private SpaceGame spaceGame;
+    private Ship ship;
     private User user;
 
-    public PlayerInfo(int currentSystemId, User user) {
-        this.currentSystemId = currentSystemId;
+    public PlayerInfo(SpaceGame spaceGame, User user, Ship ship) {
+        this.spaceGame = spaceGame;
         this.user = user;
+        this.ship = ship;
     }
 
-    public int getCurrentSystemId(int currentSystemId) {
-        return currentSystemId;
+    public SpaceGame getSpaceGame() {
+        return spaceGame;
     }
 
-    public void setCurrentSystemId(int currentSystemId) {
-        this.currentSystemId = currentSystemId;
-    }
-
-    public Vector2 getQuadrant() {
-        return quadrant;
-    }
-
-    public void setQuadrant(Vector2 quadrant) {
-        this.quadrant = quadrant;
+    public void setSpaceGame(SpaceGame spaceGame) {
+        this.spaceGame = spaceGame;
     }
 
     public User getUser() {
@@ -43,5 +36,13 @@ public class PlayerInfo {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Ship getShip() {
+        return ship;
+    }
+
+    public void setShip(Ship ship) {
+        this.ship = ship;
     }
 }
