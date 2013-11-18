@@ -124,11 +124,6 @@ public class SpaceGameMap implements DimSFSObject{
     private void initMapObject() {
         mapObject = new SFSObject();
         mapObject.putInt("id", id);
-        SFSArray pi = new SFSArray();
-        for(Integer pmi : playerInfos.keySet()){
-            pi.addUtfString(playerInfos.get(pmi).getUser().getName());
-        }
-        mapObject.putSFSArray("pis", pi);
 
         SFSArray sbds = new SFSArray();
         for(DimSFSObject bd: celestialBodies) {

@@ -17,7 +17,7 @@ public class GameBsn
 	public static void removeUserFromGame(User user, Room room, DimensionServerExtension extension)
 	{
 		// Get the game related to this room
-		SpaceGame currGame = (SpaceGame) extension.getSystems().get(room.getId());
+		SpaceGame currGame = extension.getSystems().get(room.getId());
 
 		if (currGame != null)
 		{

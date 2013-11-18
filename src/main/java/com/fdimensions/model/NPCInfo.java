@@ -1,6 +1,5 @@
 package com.fdimensions.model;
 
-import com.fdimensions.math.Vector2;
 import com.smartfoxserver.v2.entities.User;
 
 /**
@@ -10,15 +9,17 @@ import com.smartfoxserver.v2.entities.User;
  * Time: 11:41 PM
  * To change this template use File | Settings | File Templates.
  */
-public class PlayerInfo {
+public class NPCInfo {
 
     private SpaceGame spaceGame;
     private Ship ship;
-    private User user;
+    private Integer id;
+    private String name;
 
-    public PlayerInfo(SpaceGame spaceGame, User user) {
+    public NPCInfo(Integer id, String name, SpaceGame spaceGame) {
         this.spaceGame = spaceGame;
-        this.user = user;
+        this.id = id;
+        this.name = name;
     }
 
     public SpaceGame getSpaceGame() {
@@ -29,12 +30,12 @@ public class PlayerInfo {
         this.spaceGame = spaceGame;
     }
 
-    public User getUser() {
-        return user;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Ship getShip() {
@@ -43,5 +44,13 @@ public class PlayerInfo {
 
     public void setShip(Ship ship) {
         this.ship = ship;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

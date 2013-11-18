@@ -3,19 +3,15 @@ package com.fdimensions;
 import com.fdimensions.game.handlers.*;
 import com.fdimensions.math.Vector2;
 import com.fdimensions.model.*;
-import com.smartfoxserver.v2.api.CreateRoomSettings;
 import com.smartfoxserver.v2.core.SFSEventType;
 import com.smartfoxserver.v2.entities.Room;
 import com.smartfoxserver.v2.entities.User;
 import com.smartfoxserver.v2.entities.data.ISFSObject;
 import com.smartfoxserver.v2.entities.data.SFSObject;
-import com.smartfoxserver.v2.exceptions.SFSCreateRoomException;
 import com.smartfoxserver.v2.extensions.SFSExtension;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class DimensionServerExtension extends SFSExtension {
@@ -26,7 +22,7 @@ public class DimensionServerExtension extends SFSExtension {
         systems = generateSystems();
 
         this.addRequestHandler("gameSetup", GameSetupHandler.class);
-        this.addRequestHandler("ships", ShipHandler.class);
+        this.addRequestHandler("shipPosition", ShipPositionHandler.class);
         this.addRequestHandler("collisions", CollisionHandler.class);
 
         // Restart game
@@ -36,6 +32,10 @@ public class DimensionServerExtension extends SFSExtension {
         addEventHandler(SFSEventType.USER_LEAVE_ROOM, UserLeavedEventHandler.class);
         addEventHandler(SFSEventType.USER_LOGOUT, UserDisconnectedEventHandler.class);
         addEventHandler(SFSEventType.USER_DISCONNECT, UserDisconnectedEventHandler.class);
+
+        for (SpaceGame system : systems.values()) {
+            system.startGame(this);
+        }
     }
 
     private ConcurrentHashMap<Integer, SpaceGame> generateSystems() {
@@ -43,7 +43,11 @@ public class DimensionServerExtension extends SFSExtension {
         Room solSystem = getParentZone().getRoomByName("SolSystem");
         SpaceGameMap sgm = createSolSystemMap(solSystem);
         SpaceGame game = new SpaceGame(sgm, solSystem);
-        chm.put(1, game);
+
+        //CREATE TEST PLAYERS
+        createTestNpcs(game);
+
+        chm.put(solSystem.getId(), game);
         return chm;
     }
 
@@ -60,6 +64,12 @@ public class DimensionServerExtension extends SFSExtension {
         cbs.add(new CelestialBody(2, new Vector2(1500,100), 2, 50));
 
         return new SpaceGameMap(system.getId(), cbs, asteroidAreas, 10000, "1,2", 1);
+    }
+
+    private void createTestNpcs(SpaceGame game) {
+        NPCInfo p = new NPCInfo(1, "The Killer King", game);
+        p.setShip(new NPCShip(p, 1, new Vector2(), 0, 0));
+        game.getNpcs().put(1, p);
     }
 
     public void destroy()
@@ -82,9 +92,13 @@ public class DimensionServerExtension extends SFSExtension {
         return systems;
     }
 
-    public void startGame(List<User> players)
+    public void updatePlayersForPlanets(ISFSObject obj, List<User> players)
     {
-        ISFSObject resObj = new SFSObject();
-        send("GO", resObj, players);
+        send("planet_data", obj, players);
+    }
+
+    public void updatePlayerForNPC(ISFSObject obj, User player)
+    {
+        send("npc_position_data", obj, player);
     }
 }

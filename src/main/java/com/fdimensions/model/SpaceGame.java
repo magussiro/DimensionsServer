@@ -1,12 +1,15 @@
 package com.fdimensions.model;
 
 import com.fdimensions.DimensionServerExtension;
+import com.fdimensions.game.bsn.SyncCelestialBodies;
+import com.fdimensions.game.bsn.SyncNPC;
+import com.smartfoxserver.v2.SmartFoxServer;
 import com.smartfoxserver.v2.entities.Room;
-import com.smartfoxserver.v2.entities.User;
 
-import java.util.List;
 import java.util.Timer;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -20,6 +23,7 @@ public class SpaceGame
     private Room room;
 	private SpaceGameMap spaceGameMap;
 	private ConcurrentHashMap<Integer,PlayerInfo> players = null;
+    private ConcurrentHashMap<Integer,NPCInfo> npcs = null;
 
 	private long gameStartTime = 0L;
 	private Timer timer = null;
@@ -33,6 +37,7 @@ public class SpaceGame
 
 		// Initialize internal data structure
 		players = new ConcurrentHashMap<>();
+        npcs = new ConcurrentHashMap<>();
 
 		// Reset game to its initial status
 		reset(); 
@@ -62,7 +67,15 @@ public class SpaceGame
 		this.players = players;
 	}
 
-	public long getGameStartTime() {
+    public ConcurrentHashMap<Integer, NPCInfo> getNpcs() {
+        return npcs;
+    }
+
+    public void setNpcs(ConcurrentHashMap<Integer, NPCInfo> npcs) {
+        this.npcs = npcs;
+    }
+
+    public long getGameStartTime() {
 		return gameStartTime;
 	}
 
@@ -104,17 +117,21 @@ public class SpaceGame
 //		}
 	}
 
+    // Keeps a reference to the task execution
+    ScheduledFuture<?> taskHandle;
+
 	/** 
 	 * Start a new game
      *             // Set the start time of the game ahead of 3 1/2 seconds to compensate the delay
 	 */
-	public void startGame(List<User> recipients, DimensionServerExtension ext)
+	public void startGame(DimensionServerExtension ext)
 	{
-//		gameStartTime = System.currentTimeMillis() + 3500;
-//		started = true;
-//
-//		// Wait a number of seconds and then notify clients that the game starts!
-//		timer = new Timer();
-//		timer.schedule(new SyncGameStart(ext, recipients), 3000);
+		gameStartTime = System.currentTimeMillis() + 3500;
+		started = true;
+
+        SmartFoxServer sfs = SmartFoxServer.getInstance();
+
+        taskHandle = sfs.getTaskScheduler().scheduleAtFixedRate(new SyncNPC(ext), 0, 3, TimeUnit.SECONDS);
+        taskHandle = sfs.getTaskScheduler().scheduleAtFixedRate(new SyncCelestialBodies(ext), 0, 10, TimeUnit.MINUTES);
 	}
 }
