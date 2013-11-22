@@ -4,6 +4,8 @@ import com.fdimensions.math.Vector2;
 import com.smartfoxserver.v2.entities.data.ISFSObject;
 import com.smartfoxserver.v2.entities.data.SFSObject;
 
+import java.util.Random;
+
 /**
  * Created with IntelliJ IDEA.
  * User: rkevan
@@ -64,7 +66,10 @@ public class NPCShip extends Ship {
         }
         sfsObject.putFloat("x", pos.x);
         sfsObject.putFloat("y", pos.y);
-        sfsObject.putFloat("a", angle);
+        Random r = new Random();
+        float randomAngle = r.nextFloat()*((float)Math.PI);
+        sfsObject.putFloat("a", randomAngle);
+        //sfsObject.putFloat("a", angle);
         sfsObject.putFloat("t", thrust);
         return sfsObject;
     }

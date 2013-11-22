@@ -19,7 +19,7 @@ public class SpaceGameMap implements DimSFSObject{
     private int id;
     private ConcurrentHashMap<Integer, PlayerInfo> playerInfos;
     private List<CelestialBody> celestialBodies;
-    private List<AsteroidArea> asteroidAreas;
+    private List<Asteroid> asteroids;
     private int systemRadius;
     private Vector2 shipPos;
     private int shipType;
@@ -30,13 +30,13 @@ public class SpaceGameMap implements DimSFSObject{
 
     public SpaceGameMap(int id,
                         List<CelestialBody> celestialBodies,
-                        List<AsteroidArea> asteroidAreas,
+                        List<Asteroid> asteroids,
                         int systemRadius,
                         String systemResources,
                         int backgroundImage) {
         this.id = id;
         this.celestialBodies = celestialBodies;
-        this.asteroidAreas = asteroidAreas;
+        this.asteroids = asteroids;
         this.systemRadius = systemRadius;
         this.systemResources = systemResources;
         this.backgroundImage = backgroundImage;
@@ -58,12 +58,12 @@ public class SpaceGameMap implements DimSFSObject{
         this.playerInfos = playerInfos;
     }
 
-    public List<AsteroidArea> getAsteroidAreas() {
-        return asteroidAreas;
+    public List<Asteroid> getAsteroidAreas() {
+        return asteroids;
     }
 
-    public void setAsteroidAreas(List<AsteroidArea> asteroidAreas) {
-        this.asteroidAreas = asteroidAreas;
+    public void setAsteroidAreas(List<Asteroid> asteroids) {
+        this.asteroids = asteroids;
     }
 
     public List<CelestialBody> getCelestialBodies() {
@@ -132,10 +132,10 @@ public class SpaceGameMap implements DimSFSObject{
         mapObject.putSFSArray("sbds", sbds);
 
         SFSArray abs = new SFSArray();
-        for(DimSFSObject ab : asteroidAreas) {
+        for(DimSFSObject ab : asteroids) {
             abs.addSFSObject(ab.getDimSFSObject());
         }
-        mapObject.putSFSArray("abs", abs);
+        mapObject.putSFSArray("ast", abs);
 
         mapObject.putInt("rad", systemRadius);
         mapObject.putFloat("spx", shipPos.x);

@@ -24,6 +24,7 @@ public class SpaceGame
 	private SpaceGameMap spaceGameMap;
 	private ConcurrentHashMap<Integer,PlayerInfo> players = null;
     private ConcurrentHashMap<Integer,NPCInfo> npcs = null;
+    private ConcurrentHashMap<Integer,Asteroid> asteroids = null;
 
 	private long gameStartTime = 0L;
 	private Timer timer = null;
@@ -38,6 +39,7 @@ public class SpaceGame
 		// Initialize internal data structure
 		players = new ConcurrentHashMap<>();
         npcs = new ConcurrentHashMap<>();
+        asteroids = new ConcurrentHashMap<>();
 
 		// Reset game to its initial status
 		reset(); 
@@ -73,6 +75,14 @@ public class SpaceGame
 
     public void setNpcs(ConcurrentHashMap<Integer, NPCInfo> npcs) {
         this.npcs = npcs;
+    }
+
+    public ConcurrentHashMap<Integer, Asteroid> getAsteroids() {
+        return asteroids;
+    }
+
+    public void setAsteroids(ConcurrentHashMap<Integer, Asteroid> asteroids) {
+        this.asteroids = asteroids;
     }
 
     public long getGameStartTime() {

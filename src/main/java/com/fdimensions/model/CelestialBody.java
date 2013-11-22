@@ -14,15 +14,13 @@ import com.smartfoxserver.v2.entities.data.SFSObject;
 public class CelestialBody implements DimSFSObject {
     private int id;
     private Vector2 location;
-    private int bodyType;
-    private int radius;
+    private String categoryType;
     private ISFSObject sbObject;
 
-    public CelestialBody(int id, Vector2 location, int bodyType, int radius) {
+    public CelestialBody(int id, Vector2 location, String categoryType) {
         this.id = id;
         this.location = location;
-        this.bodyType = bodyType;
-        this.radius = radius;
+        this.categoryType = categoryType;
     }
 
     public int getId() {
@@ -41,20 +39,12 @@ public class CelestialBody implements DimSFSObject {
         this.location = location;
     }
 
-    public int getBodyType() {
-        return bodyType;
+    public String getCategoryType() {
+        return categoryType;
     }
 
-    public void setBodyType(int bodyType) {
-        this.bodyType = bodyType;
-    }
-
-    public int getRadius() {
-        return radius;
-    }
-
-    public void setRadius(int radius) {
-        this.radius = radius;
+    public void setCategoryType(String categoryType) {
+        this.categoryType = categoryType;
     }
 
     public ISFSObject getDimSFSObject() {
@@ -69,8 +59,7 @@ public class CelestialBody implements DimSFSObject {
         sbObject.putInt("id", id);
         sbObject.putFloat("x", location.x);
         sbObject.putFloat("y", location.y);
-        sbObject.putInt("bt", bodyType);
-        sbObject.putInt("rad", radius);
+        sbObject.putUtfString("ct", categoryType);
     }
 
 }

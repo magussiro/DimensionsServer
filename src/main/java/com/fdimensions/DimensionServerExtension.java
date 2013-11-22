@@ -38,7 +38,7 @@ public class DimensionServerExtension extends SFSExtension {
         }
     }
 
-    private ConcurrentHashMap<Integer, SpaceGame> generateSystems() {
+    protected ConcurrentHashMap<Integer, SpaceGame> generateSystems() {
         ConcurrentHashMap<Integer, SpaceGame> chm = new ConcurrentHashMap<>();
         Room solSystem = getParentZone().getRoomByName("SolSystem");
         SpaceGameMap sgm = createSolSystemMap(solSystem);
@@ -46,27 +46,57 @@ public class DimensionServerExtension extends SFSExtension {
 
         //CREATE TEST PLAYERS
         createTestNpcs(game);
-
         chm.put(solSystem.getId(), game);
+
+        Room asteroids1 = getParentZone().getRoomByName("Asteroids1");
+        sgm = createAsteroids1SystemMap(asteroids1);
+        game = new SpaceGame(sgm, asteroids1);
+        chm.put(asteroids1.getId(), game);
         return chm;
     }
 
-    private SpaceGameMap createSolSystemMap(Room system) {
-        List<Vector2> bounds = new ArrayList<>();
-        bounds.add(new Vector2(300, -150));
-        bounds.add(new Vector2(600,150));
-        List<AsteroidArea> asteroidAreas = new ArrayList<>();
-        AsteroidArea ab = new AsteroidArea(new Vector2(450, 0), bounds, 10);
-        asteroidAreas.add(ab);
+    protected SpaceGameMap createSolSystemMap(Room system) {
+        List<Asteroid> asteroids = new ArrayList<>();
+        asteroids.add(new Asteroid(1, 10, new Vector2(5000,5000), new Vector2(0,0), 1));
+        asteroids.add(new Asteroid(2, 10, new Vector2(-5000,5000), new Vector2(0,0), 1));
+        asteroids.add(new Asteroid(3, 10, new Vector2(5000,-5000), new Vector2(0,0), 1));
+        asteroids.add(new Asteroid(4, 10, new Vector2(-5000,-5000), new Vector2(0,0), 1));
+        asteroids.add(new Asteroid(5, 10, new Vector2(6000,4000), new Vector2(0,0), 1));
+        asteroids.add(new Asteroid(6, 10, new Vector2(4000,6000), new Vector2(0,0), 1));
 
-        List<CelestialBody> cbs = new ArrayList<CelestialBody>();
-        cbs.add(new CelestialBody(1, new Vector2(0,0), 1, 300));
-        cbs.add(new CelestialBody(2, new Vector2(1500,100), 2, 50));
+        List<CelestialBody> cbs = new ArrayList<>();
+        cbs.add(new CelestialBody(1, new Vector2(0,0), "3,1"));
+        cbs.add(new CelestialBody(2, new Vector2(1500,1500), "4,1")); //mercury
+        cbs.add(new CelestialBody(3, new Vector2(-2000,2000), "4,2")); //venus
+        cbs.add(new CelestialBody(4, new Vector2(3000,-3000), "4,3")); //earth
+        cbs.add(new CelestialBody(5, new Vector2(-4000,-4000), "4,4")); //mars
+        cbs.add(new CelestialBody(6, new Vector2(6000,6000), "4,5")); //jupiter
+        cbs.add(new CelestialBody(7, new Vector2(-7000,7000), "4,6")); //saturn
+        cbs.add(new CelestialBody(8, new Vector2(8000,-8000), "4,7")); //uranus
+        cbs.add(new CelestialBody(9, new Vector2(-9000,-9000), "4,8")); //neptune
+        cbs.add(new CelestialBody(10, new Vector2(10000,10000), "4,9")); //pluto
+        cbs.add(new CelestialBody(10, new Vector2(-10000,-10000), "4,10")); //eros
 
-        return new SpaceGameMap(system.getId(), cbs, asteroidAreas, 10000, "1,2", 1);
+
+
+        return new SpaceGameMap(system.getId(), cbs, asteroids, 12000, "3,1;4,1;4,2;4,3;4,4;4,5;4,6;4,7;4,8;4,9;4,10;5,1", 1);
     }
 
-    private void createTestNpcs(SpaceGame game) {
+    protected SpaceGameMap createAsteroids1SystemMap(Room system) {
+        List<Asteroid> asteroids = new ArrayList<>();
+        asteroids.add(new Asteroid(1, 10, new Vector2(100,0), new Vector2(1,0), 1));
+        asteroids.add(new Asteroid(2, 10, new Vector2(100,100), new Vector2(0,1), 1));
+        asteroids.add(new Asteroid(3, 10, new Vector2(0,100), new Vector2(-1,-1), 1));
+        asteroids.add(new Asteroid(4, 10, new Vector2(-100,0), new Vector2(1,1), 1));
+        asteroids.add(new Asteroid(5, 10, new Vector2(0,-100), new Vector2(-1,0), 1));
+        asteroids.add(new Asteroid(6, 10, new Vector2(-100,-100), new Vector2(0,-1), 1));
+        asteroids.add(new Asteroid(6, 10, new Vector2(0,0), new Vector2(0,0), 2));
+        List<CelestialBody> cbs = new ArrayList<>();
+
+        return new SpaceGameMap(system.getId(), cbs, asteroids, 3000, "5,1;5,2", 1);
+    }
+
+    protected void createTestNpcs(SpaceGame game) {
         NPCInfo p = new NPCInfo(1, "The Killer King", game);
         p.setShip(new NPCShip(p, 1, new Vector2(), 0, 0));
         game.getNpcs().put(1, p);
@@ -99,6 +129,11 @@ public class DimensionServerExtension extends SFSExtension {
 
     public void updatePlayerForNPC(ISFSObject obj, User player)
     {
-        send("npc_position_data", obj, player);
+        send("npcd", obj, player);
+    }
+
+    public void updatePlayerForAsteroids(ISFSObject obj, User player)
+    {
+        send("astd", obj, player);
     }
 }

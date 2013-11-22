@@ -25,7 +25,7 @@ public class GameSetupHandler extends BaseClientRequestHandler {
     public void handleClientRequest(User player, ISFSObject positionParams) {
         DimensionServerExtension sphe =(DimensionServerExtension)getParentExtension();
 
-        int systemId = 2;   //(roomid) will eventually load from the db
+        int systemId = 3;   //(roomid) will eventually load from the db
         int shipType = 1;   //will eventually load from the db
         Vector2 startPosition = new Vector2(600, 100); //will eventually load from db
         SpaceGame currSystem = sphe.getSystems().get(systemId);
