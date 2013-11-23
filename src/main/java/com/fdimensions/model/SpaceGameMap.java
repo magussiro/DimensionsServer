@@ -58,11 +58,11 @@ public class SpaceGameMap implements DimSFSObject{
         this.playerInfos = playerInfos;
     }
 
-    public List<Asteroid> getAsteroidAreas() {
+    public List<Asteroid> getAsteroids() {
         return asteroids;
     }
 
-    public void setAsteroidAreas(List<Asteroid> asteroids) {
+    public void setAsteroids(List<Asteroid> asteroids) {
         this.asteroids = asteroids;
     }
 

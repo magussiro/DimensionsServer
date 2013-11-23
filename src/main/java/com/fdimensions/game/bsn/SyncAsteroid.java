@@ -3,15 +3,12 @@ package com.fdimensions.game.bsn;
 import com.fdimensions.DimensionServerExtension;
 import com.fdimensions.math.Vector2;
 import com.fdimensions.model.*;
-import com.smartfoxserver.v2.entities.User;
 import com.smartfoxserver.v2.entities.data.ISFSArray;
 import com.smartfoxserver.v2.entities.data.ISFSObject;
 import com.smartfoxserver.v2.entities.data.SFSArray;
 import com.smartfoxserver.v2.entities.data.SFSObject;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -19,6 +16,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class SyncAsteroid implements Runnable
 {
+    double time = 0;
 	private DimensionServerExtension ext = null;
 	public SyncAsteroid(DimensionServerExtension ext)
 	{
@@ -29,24 +27,24 @@ public class SyncAsteroid implements Runnable
 	{
         ISFSArray positionData = new SFSArray();
         ConcurrentHashMap<Integer,SpaceGame> systems = ext.getSystems();
-
+        time += 3;
         //BIG O(N3), ouch
         for(SpaceGame system : systems.values()) {
             ConcurrentHashMap<Integer,PlayerInfo> players = system.getPlayers();
-            ConcurrentHashMap<Integer,Asteroid> asteroids= system.getAsteroids();
+            List<Asteroid> asteroids= system.getSpaceGameMap().getAsteroids();
             for(PlayerInfo pi : players.values()) {
-                for (Asteroid asteroid: asteroids.values()) {
+                for (Asteroid asteroid: asteroids) {
                     //straight line for now
+                    Vector2 pos = asteroid.getStartPos();
+                    double velMag = asteroid.getVelMag();
+                    double distanceFromCenter = asteroid.getDistanceFromCenter();
+                    double angle = asteroid.getAngle();
 
-                    //float angleToCenter = 3.13f;
-                    //float distanceFromCenter = 100;
-                    Vector2 pos = asteroid.getPos();
-                    Vector2 vel = asteroid.getVelocity();
-                    pos.x = pos.x + vel.x*3;
-                    pos.y = vel.y*3;
-                    //figure out what to do here.
-                    //asteroid.setPos(new Vector2(asteroid.getPos().x, asteroid.getPos().y));
-                    //asteroid.setVelocity(new Vector2(asteroid.getVelocity().x, asteroid.getVelocity().y));
+                    //position of asteroid as a function of time
+                    double x = pos.x + (distanceFromCenter*Math.sin(angle)) + (distanceFromCenter*Math.sin((velMag*time)+angle));
+                    double y = pos.y + (distanceFromCenter*Math.cos(angle)) - (distanceFromCenter*Math.cos((velMag * time) + angle));
+                    Vector2 gravCenter = asteroid.getGravCenter();
+                    asteroid.setCurPos(new Vector2((float)(x-gravCenter.x),(float)(y-gravCenter.y)));
                     positionData.addSFSObject(asteroid.getDimSFSObject());
                 }
                 if (positionData.size() > 0) {

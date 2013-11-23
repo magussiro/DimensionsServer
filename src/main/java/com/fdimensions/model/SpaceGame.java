@@ -1,6 +1,7 @@
 package com.fdimensions.model;
 
 import com.fdimensions.DimensionServerExtension;
+import com.fdimensions.game.bsn.SyncAsteroid;
 import com.fdimensions.game.bsn.SyncCelestialBodies;
 import com.fdimensions.game.bsn.SyncNPC;
 import com.smartfoxserver.v2.SmartFoxServer;
@@ -142,6 +143,7 @@ public class SpaceGame
         SmartFoxServer sfs = SmartFoxServer.getInstance();
 
         taskHandle = sfs.getTaskScheduler().scheduleAtFixedRate(new SyncNPC(ext), 0, 3, TimeUnit.SECONDS);
+        taskHandle = sfs.getTaskScheduler().scheduleAtFixedRate(new SyncAsteroid(ext), 0, 3, TimeUnit.SECONDS);
         taskHandle = sfs.getTaskScheduler().scheduleAtFixedRate(new SyncCelestialBodies(ext), 0, 10, TimeUnit.MINUTES);
 	}
 }
