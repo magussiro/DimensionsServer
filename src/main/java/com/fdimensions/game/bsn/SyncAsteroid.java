@@ -16,33 +16,39 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class SyncAsteroid implements Runnable
 {
-    double time = 0;
+    Double time = 0.0;
 	private DimensionServerExtension ext = null;
 	public SyncAsteroid(DimensionServerExtension ext)
 	{
 		this.ext = ext;
 	}
 
+    public void run(Double d) {
+        time = d;
+        run();
+    }
+
 	public void run()
-	{
-        ISFSArray positionData = new SFSArray();
+    {
         ConcurrentHashMap<Integer,SpaceGame> systems = ext.getSystems();
-        time += 3;
         //BIG O(N3), ouch
         for(SpaceGame system : systems.values()) {
             ConcurrentHashMap<Integer,PlayerInfo> players = system.getPlayers();
             List<Asteroid> asteroids= system.getSpaceGameMap().getAsteroids();
             for(PlayerInfo pi : players.values()) {
+                ISFSArray positionData = new SFSArray();
                 for (Asteroid asteroid: asteroids) {
                     //straight line for now
-                    Vector2 pos = asteroid.getStartPos();
+                    Vector2 startPos = asteroid.getStartPos();
                     double velMag = asteroid.getVelMag();
-                    double distanceFromCenter = asteroid.getDistanceFromCenter();
-                    double angle = asteroid.getAngle();
+                    double disFromCenter = asteroid.getDistanceFromCenter();
+                    double startAngle = asteroid.getStartAngle();
+
+                    //(velMag*time*0.0174532925)
 
                     //position of asteroid as a function of time
-                    double x = pos.x + (distanceFromCenter*Math.sin(angle)) + (distanceFromCenter*Math.sin((velMag*time)+angle));
-                    double y = pos.y + (distanceFromCenter*Math.cos(angle)) - (distanceFromCenter*Math.cos((velMag * time) + angle));
+                    double x = startPos.x - (disFromCenter*Math.sin(startAngle+(Math.PI/2))) + (disFromCenter*Math.sin(time+startAngle+(Math.PI/2)));
+                    double y = startPos.y + (disFromCenter*Math.cos(startAngle+(Math.PI/2))) - (disFromCenter*Math.cos(time+startAngle+(Math.PI/2)));
                     Vector2 gravCenter = asteroid.getGravCenter();
                     asteroid.setCurPos(new Vector2((float)(x-gravCenter.x),(float)(y-gravCenter.y)));
                     positionData.addSFSObject(asteroid.getDimSFSObject());
@@ -52,11 +58,9 @@ public class SyncAsteroid implements Runnable
                     ISFSObject retObj = new SFSObject();
                     retObj.putSFSArray("apd", positionData);
                     ext.updatePlayerForAsteroids(retObj, pi.getUser());
-
-                    //then clear it for the next round.
-                    positionData = new SFSArray();
                 }
             }
         }
+        time += 3;
 	}
 }

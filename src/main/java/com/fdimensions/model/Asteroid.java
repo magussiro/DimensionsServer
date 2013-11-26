@@ -23,7 +23,7 @@ public class Asteroid implements DimSFSObject{
     private Vector2 gravCenter;
     private double distanceFromCenter;
     private double velMag;
-    private double angle;
+    private double startAngle;
 
     public Asteroid(int id, int hp, Vector2 startPos, Vector2 velocity, int type) {
         this.id = id;
@@ -34,7 +34,7 @@ public class Asteroid implements DimSFSObject{
         velMag = Math.sqrt(Math.pow(velocity.x,2)+Math.pow(velocity.y,2));
         this.type = type;
         this.gravCenter = new Vector2(0,0);
-        angle = Math.atan2((startPos.x-gravCenter.x), (startPos.y-gravCenter.y));
+        startAngle = Math.atan2((startPos.y-gravCenter.y), (startPos.x-gravCenter.x));
         distanceFromCenter = Math.sqrt(Math.pow(startPos.x, 2) + Math.pow(startPos.y, 2));
     }
 
@@ -46,7 +46,7 @@ public class Asteroid implements DimSFSObject{
         velMag = Math.sqrt(Math.pow(velocity.x,2)+Math.pow(velocity.y,2));
         this.type = type;
         this.gravCenter = gravCenter;
-        angle = Math.atan2((startPos.x-gravCenter.x), (startPos.y-gravCenter.y));
+        startAngle = Math.atan2((startPos.x-gravCenter.x), (startPos.y-gravCenter.y));
         distanceFromCenter = Math.sqrt(Math.pow(startPos.x-gravCenter.x, 2) + Math.pow(startPos.y-gravCenter.y, 2));
     }
 
@@ -114,12 +114,12 @@ public class Asteroid implements DimSFSObject{
         this.velMag = velMag;
     }
 
-    public double getAngle() {
-        return angle;
+    public double getStartAngle() {
+        return startAngle;
     }
 
-    public void setAngle(double angle) {
-        this.angle = angle;
+    public void setStartAngle(double startAngle) {
+        this.startAngle = startAngle;
     }
 
     public Vector2 getCurPos() {

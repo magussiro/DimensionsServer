@@ -9,9 +9,7 @@ import com.fdimensions.model.SpaceGame;
 import com.fdimensions.model.SpaceGameMap;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.slf4j.Logger;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -28,8 +26,11 @@ import static org.mockito.Mockito.when;
  * Time: 10:58 AM
  * To change this template use File | Settings | File Templates.
  */
-@PrepareForTest(Logger.class)
 public class SyncAsteroidTest {
+
+//    static {
+//        BasicConfigurator.configure();
+//    }
 
     private SyncAsteroid syncAsteroid;
 
@@ -51,8 +52,6 @@ public class SyncAsteroidTest {
     }
     @Test
     public void testRun() throws Exception {
-        PowerMockito.mockStatic(Logger.class);
-
         ConcurrentHashMap<Integer, SpaceGame> systems = new ConcurrentHashMap<>();
         systems.put(1, sg);
         when(dse.getSystems()).thenReturn(systems);
@@ -61,18 +60,32 @@ public class SyncAsteroidTest {
         when(sg.getPlayers()).thenReturn(playerInfos);
         when(sg.getSpaceGameMap()).thenReturn(spm);
 
-
-        Asteroid a = new Asteroid(1, 10, new Vector2(-100, 0), new Vector2(0, 1), 1);
+        Vector2 startPos = new Vector2(-100, 0);
+        Asteroid a = new Asteroid(1, 10, startPos, new Vector2(0, 1), 1);
 
         List<Asteroid> asteroids = new ArrayList<>();
         asteroids.add(a);
         when(spm.getAsteroids()).thenReturn(asteroids);
 
-
-
-
         syncAsteroid = new SyncAsteroid(dse);
-        syncAsteroid.run(3.0);
+        syncAsteroid.run(0.0);
+        Assert.assertEquals(a.getCurPos(), startPos);
+
+        syncAsteroid.run(Math.PI/4);
+        Assert.assertTrue(-70 == (int)(a.getCurPos().x));
+        Assert.assertTrue(-70 == (int)(a.getCurPos().y));
+
+        syncAsteroid.run(Math.PI/2);
+        Assert.assertTrue(0 == (int)(a.getCurPos().x));
+        Assert.assertTrue(-100 == (int)(a.getCurPos().y));
+
+        syncAsteroid.run(Math.PI);
+        Assert.assertTrue(100 == (int)(a.getCurPos().x));
+        Assert.assertTrue(0 == (int)(a.getCurPos().y));
+
+        syncAsteroid.run((3*Math.PI)/2);
+        Assert.assertTrue(0 == (int)(a.getCurPos().x));
+        Assert.assertTrue(100 == (int)(a.getCurPos().y));
 
     }
 }

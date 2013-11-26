@@ -86,11 +86,11 @@ public class DimensionServerExtension extends SFSExtension {
     protected SpaceGameMap createAsteroids1SystemMap(Room system) {
         List<Asteroid> asteroids = new ArrayList<>();
         asteroids.add(new Asteroid(1, 10, new Vector2(200,0), new Vector2(1,0), 1));
-        asteroids.add(new Asteroid(2, 10, new Vector2(200,200), new Vector2(0,1), 1));
-        asteroids.add(new Asteroid(3, 10, new Vector2(0,200), new Vector2(-1,-1), 1));
-        asteroids.add(new Asteroid(4, 10, new Vector2(-200,0), new Vector2(1,1), 1));
-        asteroids.add(new Asteroid(5, 10, new Vector2(0,-200), new Vector2(-1,0), 1));
-        asteroids.add(new Asteroid(6, 10, new Vector2(-200,-200), new Vector2(0,-1), 1));
+        asteroids.add(new Asteroid(2, 10, new Vector2(200,200), new Vector2(1,0), 1));
+//        asteroids.add(new Asteroid(3, 10, new Vector2(0,200), new Vector2(1,0), 1));
+//        asteroids.add(new Asteroid(4, 10, new Vector2(-200,0), new Vector2(1,0), 1));
+//        asteroids.add(new Asteroid(5, 10, new Vector2(0,-200), new Vector2(1,0), 1));
+//        asteroids.add(new Asteroid(6, 10, new Vector2(-200,-200), new Vector2(1,0), 1));
         List<CelestialBody> cbs = new ArrayList<>();
         cbs.add(new CelestialBody(1, new Vector2(0,0), "4,11")); //largeAsteroid1
         return new SpaceGameMap(system.getId(), cbs, asteroids, 600, "4,11;5,1;", 1);
