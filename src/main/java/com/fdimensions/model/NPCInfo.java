@@ -1,7 +1,5 @@
 package com.fdimensions.model;
 
-import com.smartfoxserver.v2.entities.User;
-
 /**
  * Created with IntelliJ IDEA.
  * User: rkevan

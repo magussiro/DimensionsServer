@@ -1,6 +1,5 @@
 package com.fdimensions.model;
 
-import com.fdimensions.math.Vector2;
 import com.smartfoxserver.v2.entities.User;
 
 /**

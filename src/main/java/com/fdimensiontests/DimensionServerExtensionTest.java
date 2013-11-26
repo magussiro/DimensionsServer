@@ -2,10 +2,10 @@ package com.fdimensiontests;
 
 import com.fdimensions.DimensionServerExtension;
 import com.fdimensions.model.SpaceGame;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.mockito.Mock;
 
 /**
  * Created with IntelliJ IDEA.

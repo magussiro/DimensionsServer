@@ -2,7 +2,10 @@ package com.fdimensions.game.handlers;
 
 import com.fdimensions.DimensionServerExtension;
 import com.fdimensions.math.Vector2;
-import com.fdimensions.model.*;
+import com.fdimensions.model.PlayerInfo;
+import com.fdimensions.model.PlayerShip;
+import com.fdimensions.model.SpaceGame;
+import com.fdimensions.model.SpaceGameMap;
 import com.smartfoxserver.v2.entities.Room;
 import com.smartfoxserver.v2.entities.User;
 import com.smartfoxserver.v2.entities.data.ISFSObject;
