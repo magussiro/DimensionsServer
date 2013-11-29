@@ -46,7 +46,7 @@ public class GameSetupHandler extends BaseClientRequestHandler {
 
         //set player info to send
         PlayerInfo p = new PlayerInfo(currSystem, player);
-        p.setShip(new PlayerShip(p, shipType, startPosition, 0, 0));
+        p.setShip(new PlayerShip(p, shipType, startPosition, -150, -150));
         currSystem.getPlayers().put(player.getId(), p);
 
         if (currSystem != null && player != null)
@@ -58,6 +58,7 @@ public class GameSetupHandler extends BaseClientRequestHandler {
 
             ISFSObject resObj = spm.getDimSFSObject();
             send("setup_game_for_client", resObj, player);
+            p.setReady(true);
         }
     }
 

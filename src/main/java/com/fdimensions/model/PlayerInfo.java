@@ -14,6 +14,7 @@ public class PlayerInfo {
     private SpaceGame spaceGame;
     private Ship ship;
     private User user;
+    private boolean ready = false;
 
     public PlayerInfo(SpaceGame spaceGame, User user) {
         this.spaceGame = spaceGame;
@@ -42,5 +43,13 @@ public class PlayerInfo {
 
     public void setShip(Ship ship) {
         this.ship = ship;
+    }
+
+    public boolean isReady() {
+        return ready;
+    }
+
+    public void setReady(boolean ready) {
+        this.ready = ready;
     }
 }

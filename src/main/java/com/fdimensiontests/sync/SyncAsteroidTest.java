@@ -46,10 +46,49 @@ public class SyncAsteroidTest {
     @Mock
     SpaceGameMap spm;
 
+    List<SyncAsteroidTestInfo> testInfos;
+
     @BeforeMethod
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
+        testInfos = new ArrayList<>();
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(200,200), 0.0, new Vector2(200, 200), .5f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(0,282), Math.PI/8, new Vector2(-55, 276), .5f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(0,282), Math.PI/4, new Vector2(-107, 260), .5f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(200,200), Math.PI/2, new Vector2(0, 282), .5f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(200,200), Math.PI, new Vector2(-200, 200), .5f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(200,200), 3*Math.PI/2, new Vector2(-282, 0), .5f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(200,200), 2*Math.PI, new Vector2(-200, -200), .5f));
+
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(-200,0), 0.0, new Vector2(-200, 0), 1f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(-200,0), Math.PI/4, new Vector2(-141, -141), 1f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(-200,0), Math.PI/2, new Vector2(0, -200), 1f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(-200,0), Math.PI, new Vector2(200, 0), 1f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(-200,0), 3*Math.PI/2, new Vector2(0, 200), 1f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(-200,0), 2*Math.PI, new Vector2(-200, 0), 1f));
+
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(0,-200), 0.0, new Vector2(0, -200), 1f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(0,-200), Math.PI/4, new Vector2(141, -141), 1f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(0,-200), Math.PI/2, new Vector2(200, 0), 1f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(0,-200), Math.PI, new Vector2(0, 200), 1f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(0,-200), 3*Math.PI/2, new Vector2(-200, 0), 1f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(0,-200), 2*Math.PI, new Vector2(0, -200), 1f));
+
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(0,200), 0.0, new Vector2(0, 200), 1f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(0,200), Math.PI/4, new Vector2(-141, 141), 1f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(0,200), Math.PI/2, new Vector2(-200, 0), 1f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(0,200), Math.PI, new Vector2(0, -200), 1f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(0,200), 3*Math.PI/2, new Vector2(200, 0), 1f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(0,200), 2*Math.PI, new Vector2(0, 200), 1f));
+
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(200,0), 0.0, new Vector2(200, 0), 1f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(200,0), Math.PI/4, new Vector2(141, 141), 1f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(200,0), Math.PI/2, new Vector2(0, 200), 1f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(200,0), Math.PI, new Vector2(-200, 0), 1f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(200,0), 3*Math.PI/2, new Vector2(0, -200), 1f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(200,0), 2*Math.PI, new Vector2(200, 0), 1f));
     }
+
     @Test
     public void testRun() throws Exception {
         ConcurrentHashMap<Integer, SpaceGame> systems = new ConcurrentHashMap<>();
@@ -60,32 +99,17 @@ public class SyncAsteroidTest {
         when(sg.getPlayers()).thenReturn(playerInfos);
         when(sg.getSpaceGameMap()).thenReturn(spm);
 
-        Vector2 startPos = new Vector2(-100, 0);
-        Asteroid a = new Asteroid(1, 10, startPos, new Vector2(0, 1), 1);
-
-        List<Asteroid> asteroids = new ArrayList<>();
-        asteroids.add(a);
-        when(spm.getAsteroids()).thenReturn(asteroids);
-
         syncAsteroid = new SyncAsteroid(dse);
-        syncAsteroid.run(0.0);
-        Assert.assertEquals(a.getCurPos(), startPos);
 
-        syncAsteroid.run(Math.PI/4);
-        Assert.assertTrue(-70 == (int)(a.getCurPos().x));
-        Assert.assertTrue(-70 == (int)(a.getCurPos().y));
-
-        syncAsteroid.run(Math.PI/2);
-        Assert.assertTrue(0 == (int)(a.getCurPos().x));
-        Assert.assertTrue(-100 == (int)(a.getCurPos().y));
-
-        syncAsteroid.run(Math.PI);
-        Assert.assertTrue(100 == (int)(a.getCurPos().x));
-        Assert.assertTrue(0 == (int)(a.getCurPos().y));
-
-        syncAsteroid.run((3*Math.PI)/2);
-        Assert.assertTrue(0 == (int)(a.getCurPos().x));
-        Assert.assertTrue(100 == (int)(a.getCurPos().y));
-
+        Asteroid a;
+        for (SyncAsteroidTestInfo sati : testInfos) {
+            a = new Asteroid(1, 10, sati.getStartPos(), sati.getVelMag(), 1);
+            List<Asteroid> asteroids = new ArrayList<>();
+            asteroids.add(a);
+            when(spm.getAsteroids()).thenReturn(asteroids);
+            syncAsteroid.run(sati.getTestTimePassed());
+            Assert.assertTrue(sati.getExpectedEndPos().x == (int)(a.getCurPos().x));
+            Assert.assertTrue(sati.getExpectedEndPos().y == (int)(a.getCurPos().y));
+        }
     }
 }

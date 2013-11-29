@@ -16,34 +16,30 @@ public class Asteroid implements DimSFSObject{
     private int hp;
     private Vector2 startPos;
     private Vector2 curPos;
-    private Vector2 velocity;
     private int type;
-    SFSObject sbObject;
-
     private Vector2 gravCenter;
     private double distanceFromCenter;
-    private double velMag;
+    private float velMag;
     private double startAngle;
 
-    public Asteroid(int id, int hp, Vector2 startPos, Vector2 velocity, int type) {
+    public Asteroid(int id, int hp, Vector2 startPos, float velMag, int type) {
         this.id = id;
         this.hp = hp;
         this.startPos = startPos;
         this.curPos = startPos;
-        this.velocity = velocity;
-        velMag = Math.sqrt(Math.pow(velocity.x,2)+Math.pow(velocity.y,2));
+        this.velMag = velMag;
         this.type = type;
         this.gravCenter = new Vector2(0,0);
         startAngle = Math.atan2((startPos.y-gravCenter.y), (startPos.x-gravCenter.x));
         distanceFromCenter = Math.sqrt(Math.pow(startPos.x, 2) + Math.pow(startPos.y, 2));
     }
 
-    public Asteroid(int id, int hp, Vector2 startPos, Vector2 velocity, int type, Vector2 gravCenter) {
+    public Asteroid(int id, int hp, Vector2 startPos, float velMag, int type, Vector2 gravCenter) {
         this.id = id;
         this.hp = hp;
         this.startPos = startPos;
-        this.velocity = velocity;
-        velMag = Math.sqrt(Math.pow(velocity.x,2)+Math.pow(velocity.y,2));
+        this.curPos = startPos;
+        this.velMag = velMag;
         this.type = type;
         this.gravCenter = gravCenter;
         startAngle = Math.atan2((startPos.x-gravCenter.x), (startPos.y-gravCenter.y));
@@ -74,14 +70,6 @@ public class Asteroid implements DimSFSObject{
         this.startPos = startPos;
     }
 
-    public Vector2 getVelocity() {
-        return velocity;
-    }
-
-    public void setVelocity(Vector2 velocity) {
-        this.velocity = velocity;
-    }
-
     public int getType() {
         return type;
     }
@@ -106,11 +94,11 @@ public class Asteroid implements DimSFSObject{
         this.distanceFromCenter = distanceFromCenter;
     }
 
-    public double getVelMag() {
+    public float getVelMag() {
         return velMag;
     }
 
-    public void setVelMag(double velMag) {
+    public void setVelMag(float velMag) {
         this.velMag = velMag;
     }
 
@@ -132,22 +120,15 @@ public class Asteroid implements DimSFSObject{
 
     @Override
     public ISFSObject getDimSFSObject() {
-        if (null == sbObject) {
-            initStationaryBodySFSObject();
-        }
-        return sbObject;
-    }
-
-    private void initStationaryBodySFSObject(){
-        sbObject = new SFSObject();
+        ISFSObject sbObject = new SFSObject();
         sbObject.putInt("id", id);
         sbObject.putFloat("x", curPos.x);
         sbObject.putFloat("y", curPos.y);
-        sbObject.putFloat("vx", velocity.x);
-        sbObject.putFloat("vy", velocity.y);
         sbObject.putFloat("gx", gravCenter.x);
         sbObject.putFloat("gy", gravCenter.y);
+        sbObject.putFloat("vm", velMag);
         sbObject.putInt("t", type);
         sbObject.putInt("hp", hp);
+        return sbObject;
     }
 }
