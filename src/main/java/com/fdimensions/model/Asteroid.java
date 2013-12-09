@@ -1,8 +1,12 @@
 package com.fdimensions.model;
 
 import com.fdimensions.math.Vector2;
+import com.smartfoxserver.v2.entities.data.ISFSArray;
 import com.smartfoxserver.v2.entities.data.ISFSObject;
+import com.smartfoxserver.v2.entities.data.SFSArray;
 import com.smartfoxserver.v2.entities.data.SFSObject;
+
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,8 +25,9 @@ public class Asteroid implements DimSFSObject{
     private double distanceFromCenter;
     private float velMag;
     private double startAngle;
+    private String path;
 
-    public Asteroid(int id, int hp, Vector2 startPos, float velMag, int type) {
+    public Asteroid(int id, int hp, Vector2 startPos, float velMag, int type, String path) {
         this.id = id;
         this.hp = hp;
         this.startPos = startPos;
@@ -32,9 +37,10 @@ public class Asteroid implements DimSFSObject{
         this.gravCenter = new Vector2(0,0);
         startAngle = Math.atan2((startPos.y-gravCenter.y), (startPos.x-gravCenter.x));
         distanceFromCenter = Math.sqrt(Math.pow(startPos.x, 2) + Math.pow(startPos.y, 2));
+        this.path = path;
     }
 
-    public Asteroid(int id, int hp, Vector2 startPos, float velMag, int type, Vector2 gravCenter) {
+    public Asteroid(int id, int hp, Vector2 startPos, float velMag, int type, Vector2 gravCenter, String path) {
         this.id = id;
         this.hp = hp;
         this.startPos = startPos;
@@ -44,6 +50,7 @@ public class Asteroid implements DimSFSObject{
         this.gravCenter = gravCenter;
         startAngle = Math.atan2((startPos.x-gravCenter.x), (startPos.y-gravCenter.y));
         distanceFromCenter = Math.sqrt(Math.pow(startPos.x-gravCenter.x, 2) + Math.pow(startPos.y-gravCenter.y, 2));
+        this.path = path;
     }
 
     public int getId() {
@@ -118,6 +125,14 @@ public class Asteroid implements DimSFSObject{
         this.curPos = curPos;
     }
 
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
     @Override
     public ISFSObject getDimSFSObject() {
         ISFSObject sbObject = new SFSObject();
@@ -128,6 +143,16 @@ public class Asteroid implements DimSFSObject{
         sbObject.putFloat("gy", gravCenter.y);
         sbObject.putFloat("vm", velMag);
         sbObject.putInt("t", type);
+        sbObject.putInt("hp", hp);
+        sbObject.putUtfString("path", path);
+        return sbObject;
+    }
+
+    public ISFSObject getUpdateDimSFSObject() {
+        ISFSObject sbObject = new SFSObject();
+        sbObject.putInt("id", id);
+        sbObject.putFloat("x", curPos.x);
+        sbObject.putFloat("y", curPos.y);
         sbObject.putInt("hp", hp);
         return sbObject;
     }

@@ -114,11 +114,17 @@ public class SpaceGameMap implements DimSFSObject{
         this.backgroundImage = backgroundImage;
     }
 
+    @Override
     public ISFSObject getDimSFSObject() {
         if (null == mapObject) {
             initMapObject();
         }
         return mapObject;
+    }
+
+    @Override
+    public ISFSObject getUpdateDimSFSObject() {
+        return getDimSFSObject();
     }
 
     private void initMapObject() {

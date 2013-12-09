@@ -12,5 +12,5 @@ import com.smartfoxserver.v2.entities.data.ISFSObject;
 public interface DimSFSObject {
 
     public ISFSObject getDimSFSObject();
-
+    public ISFSObject getUpdateDimSFSObject();
 }

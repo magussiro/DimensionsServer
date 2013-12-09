@@ -52,6 +52,23 @@ public class SyncAsteroidTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         testInfos = new ArrayList<>();
+
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(200,200), 0.0, new Vector2(200, 200), -.5f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(200,200), Math.PI/8, new Vector2(235, 157), -.5f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(200,200), Math.PI/4, new Vector2(261, 108), -.5f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(200,200), Math.PI/2, new Vector2(282, 0), -.5f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(200,200), Math.PI, new Vector2(200, -200), -.5f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(200,200), 3*Math.PI/2, new Vector2(0, -282), -.5f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(200,200), 2*Math.PI, new Vector2(-200, -200), -.5f));
+
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(200,200), 0.0, new Vector2(200, 200), -1f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(200,200), Math.PI/8, new Vector2(261, 108), -1f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(200,200), Math.PI/4, new Vector2(282, 0), -1f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(200,200), Math.PI/2, new Vector2(200, -200), -1f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(200,200), Math.PI, new Vector2(-200, -200), -1f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(200,200), 3*Math.PI/2, new Vector2(-200, 200), -1f));
+        testInfos.add(new SyncAsteroidTestInfo(new Vector2(200,200), 2*Math.PI, new Vector2(200, 200), -1f));
+
         testInfos.add(new SyncAsteroidTestInfo(new Vector2(200,200), 0.0, new Vector2(200, 200), .5f));
         testInfos.add(new SyncAsteroidTestInfo(new Vector2(0,282), Math.PI/8, new Vector2(-55, 276), .5f));
         testInfos.add(new SyncAsteroidTestInfo(new Vector2(0,282), Math.PI/4, new Vector2(-107, 260), .5f));
@@ -87,6 +104,7 @@ public class SyncAsteroidTest {
         testInfos.add(new SyncAsteroidTestInfo(new Vector2(200,0), Math.PI, new Vector2(-200, 0), 1f));
         testInfos.add(new SyncAsteroidTestInfo(new Vector2(200,0), 3*Math.PI/2, new Vector2(0, -200), 1f));
         testInfos.add(new SyncAsteroidTestInfo(new Vector2(200,0), 2*Math.PI, new Vector2(200, 0), 1f));
+
     }
 
     @Test
@@ -98,12 +116,13 @@ public class SyncAsteroidTest {
         playerInfos.put(1, pi);
         when(sg.getPlayers()).thenReturn(playerInfos);
         when(sg.getSpaceGameMap()).thenReturn(spm);
+        when(pi.isReady()).thenReturn(true);
 
         syncAsteroid = new SyncAsteroid(dse);
 
         Asteroid a;
         for (SyncAsteroidTestInfo sati : testInfos) {
-            a = new Asteroid(1, 10, sati.getStartPos(), sati.getVelMag(), 1);
+            a = new Asteroid(1, 10, sati.getStartPos(), sati.getVelMag(), 1, "cco");
             List<Asteroid> asteroids = new ArrayList<>();
             asteroids.add(a);
             when(spm.getAsteroids()).thenReturn(asteroids);

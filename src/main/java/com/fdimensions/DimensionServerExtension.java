@@ -55,13 +55,14 @@ public class DimensionServerExtension extends SFSExtension {
     }
 
     protected SpaceGameMap createSolSystemMap(Room system) {
+        String path = "cco";  //circular orbit
         List<Asteroid> asteroids = new ArrayList<>();
-        asteroids.add(new Asteroid(1, 10, new Vector2(5000,5000), .2f, 1));
-        asteroids.add(new Asteroid(2, 10, new Vector2(-5000,5000), .2f, 1));
-        asteroids.add(new Asteroid(3, 10, new Vector2(5000,-5000), .2f, 1));
-        asteroids.add(new Asteroid(4, 10, new Vector2(-5000,-5000), .2f, 1));
-        asteroids.add(new Asteroid(5, 10, new Vector2(6000,4000), .2f, 1));
-        asteroids.add(new Asteroid(6, 10, new Vector2(4000,6000), .2f, 1));
+        asteroids.add(new Asteroid(1, 10, new Vector2(5000,5000), .2f, 1, path));
+        asteroids.add(new Asteroid(2, 10, new Vector2(-5000,5000), .2f, 1, path));
+        asteroids.add(new Asteroid(3, 10, new Vector2(5000,-5000), .2f, 1, path));
+        asteroids.add(new Asteroid(4, 10, new Vector2(-5000,-5000), .2f, 1, path));
+        asteroids.add(new Asteroid(5, 10, new Vector2(6000,4000), .2f, 1, path));
+        asteroids.add(new Asteroid(6, 10, new Vector2(4000,6000), .2f, 1, path));
 
         List<CelestialBody> cbs = new ArrayList<>();
         cbs.add(new CelestialBody(1, new Vector2(0,0), "3,1"));
@@ -89,19 +90,20 @@ public class DimensionServerExtension extends SFSExtension {
         cbs.add(br1);
         cbs.add(br2);
         List<Asteroid> asteroids = new ArrayList<>();
-        asteroids.add(new Asteroid(1, 10, new Vector2(500,0), .2f, 1, br1.getLocation()));
-        asteroids.add(new Asteroid(2, 10, new Vector2(500,200), .2f, 1, br1.getLocation()));
-        asteroids.add(new Asteroid(3, 10, new Vector2(300,200), .2f, 1, br1.getLocation()));
-        asteroids.add(new Asteroid(4, 10, new Vector2(100,0), .2f, 1, br1.getLocation()));
-        asteroids.add(new Asteroid(5, 10, new Vector2(300,-200), .2f, 1, br1.getLocation()));
-        asteroids.add(new Asteroid(6, 10, new Vector2(100,-200), .2f, 1, br1.getLocation()));
-
-        asteroids.add(new Asteroid(7, 10, new Vector2(-100,0), .2f, -1, br2.getLocation()));
-        asteroids.add(new Asteroid(8, 10, new Vector2(-100,200), .2f, -1, br2.getLocation()));
-        asteroids.add(new Asteroid(9, 10, new Vector2(-300,200), .2f, -1, br2.getLocation()));
-        asteroids.add(new Asteroid(10, 10, new Vector2(-500,0), .2f, -1, br2.getLocation()));
-        asteroids.add(new Asteroid(11, 10, new Vector2(-300,-200), .2f, -1, br2.getLocation()));
-        asteroids.add(new Asteroid(12, 10, new Vector2(-500,-200), .2f, -1, br2.getLocation()));
+        String path = "cco(300,0)";  //clockwise circular orbit
+//        asteroids.add(new Asteroid(1, 10, new Vector2(500,0), .2f, 1, br1.getLocation(), path));
+//        asteroids.add(new Asteroid(2, 10, new Vector2(500,200), .2f, 1, br1.getLocation(), path));
+        asteroids.add(new Asteroid(3, 10, new Vector2(300,200), .2f, 1, br1.getLocation(), path));
+        asteroids.add(new Asteroid(4, 10, new Vector2(100,0), .2f, 1, br1.getLocation(), path));
+        asteroids.add(new Asteroid(5, 10, new Vector2(300,-200), .2f, 1, br1.getLocation(), path));
+        asteroids.add(new Asteroid(6, 10, new Vector2(100,-200), .2f, 1, br1.getLocation(), path));
+//        path = "ccco(-300,0)";  //counterclockwise circular orbit
+//        asteroids.add(new Asteroid(7, 10, new Vector2(-100,0), .2f, -1, br2.getLocation(), path));
+//        asteroids.add(new Asteroid(8, 10, new Vector2(-100,200), .2f, -1, br2.getLocation(), path));
+//        asteroids.add(new Asteroid(9, 10, new Vector2(-300,200), .2f, -1, br2.getLocation(), path));
+//        asteroids.add(new Asteroid(10, 10, new Vector2(-500,0), .2f, -1, br2.getLocation(), path));
+//        asteroids.add(new Asteroid(11, 10, new Vector2(-300,-200), .2f, -1, br2.getLocation(), path));
+//        asteroids.add(new Asteroid(12, 10, new Vector2(-500,-200), .2f, -1, br2.getLocation(), path));
         return new SpaceGameMap(system.getId(), cbs, asteroids, 600, "4,11;5,1;", 1);
     }
 

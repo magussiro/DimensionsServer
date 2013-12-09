@@ -15,7 +15,6 @@ public class CelestialBody implements DimSFSObject {
     private int id;
     private Vector2 location;
     private String categoryType;
-    private ISFSObject sbObject;
 
     public CelestialBody(int id, Vector2 location, String categoryType) {
         this.id = id;
@@ -47,19 +46,23 @@ public class CelestialBody implements DimSFSObject {
         this.categoryType = categoryType;
     }
 
+    @Override
     public ISFSObject getDimSFSObject() {
-        if (null == sbObject) {
-            initStationaryBodySFSObject();
-        }
-        return sbObject;
-    }
-
-    private void initStationaryBodySFSObject(){
-        sbObject = new SFSObject();
+        ISFSObject sbObject = new SFSObject();
         sbObject.putInt("id", id);
         sbObject.putFloat("x", location.x);
         sbObject.putFloat("y", location.y);
         sbObject.putUtfString("ct", categoryType);
+        return sbObject;
+    }
+
+    @Override
+    public ISFSObject getUpdateDimSFSObject() {
+        ISFSObject sbObject = new SFSObject();
+        sbObject.putInt("id", id);
+        sbObject.putFloat("x", location.x);
+        sbObject.putFloat("y", location.y);
+        return sbObject;
     }
 
 }

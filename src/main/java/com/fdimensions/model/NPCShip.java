@@ -58,12 +58,23 @@ public class NPCShip extends Ship {
 
     @Override
     public ISFSObject getDimSFSObject() {
-        if (null == sfsObject) {
-            sfsObject = new SFSObject();
-            sfsObject.putInt("nid", npcInfo.getId());
-            sfsObject.putUtfString("name", npcInfo.getName());
-            sfsObject.putInt("st", shipType);
-        }
+        ISFSObject sfsObject =  new SFSObject();
+        sfsObject.putInt("nid", npcInfo.getId());
+        sfsObject.putUtfString("name", npcInfo.getName());
+        sfsObject.putFloat("x", pos.x);
+        sfsObject.putFloat("y", pos.y);
+        Random r = new Random();
+        float randomAngle = r.nextFloat()*((float)Math.PI);
+        sfsObject.putFloat("a", randomAngle);
+        //sfsObject.putFloat("a", angle);
+        sfsObject.putFloat("t", thrust);
+        return sfsObject;
+    }
+
+    @Override
+    public ISFSObject getUpdateDimSFSObject() {
+        ISFSObject sfsObject =  new SFSObject();
+        sfsObject.putInt("nid", npcInfo.getId());
         sfsObject.putFloat("x", pos.x);
         sfsObject.putFloat("y", pos.y);
         Random r = new Random();

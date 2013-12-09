@@ -66,12 +66,21 @@ public class PlayerShip extends Ship implements Scannable, DimSFSObject {
 
     @Override
     public ISFSObject getDimSFSObject() {
-        if (null == sfsObject) {
-            sfsObject = new SFSObject();
-            sfsObject.putInt("id", playerInfo.getUser().getId());
-            sfsObject.putUtfString("name", playerInfo.getUser().getName());
-            sfsObject.putInt("st", shipType);
-        }
+        ISFSObject sfsObject =  new SFSObject();
+        sfsObject.putInt("id", playerInfo.getUser().getId());
+        sfsObject.putUtfString("name", playerInfo.getUser().getName());
+        sfsObject.putInt("st", shipType);
+        sfsObject.putFloat("x", pos.x);
+        sfsObject.putFloat("y", pos.y);
+        sfsObject.putFloat("a", angle);
+        sfsObject.putFloat("t", thrust);
+        return sfsObject;
+    }
+
+    @Override
+    public ISFSObject getUpdateDimSFSObject() {
+        ISFSObject sfsObject =  new SFSObject();
+        sfsObject.putInt("id", playerInfo.getUser().getId());
         sfsObject.putFloat("x", pos.x);
         sfsObject.putFloat("y", pos.y);
         sfsObject.putFloat("a", angle);

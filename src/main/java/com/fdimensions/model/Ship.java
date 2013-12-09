@@ -21,7 +21,6 @@ public abstract class Ship implements Scannable, DimSFSObject {
     protected float thrust;
     protected Map<Integer,PlayerInfo> playerProximityMap;
     protected Map<Integer,NPCInfo> npcProximityMap;
-    protected SFSObject sfsObject;
 
     public Ship(int shipType, Vector2 pos, float angle, float thrust) {
         this.shipType = shipType;
